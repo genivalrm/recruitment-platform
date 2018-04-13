@@ -12,4 +12,7 @@
 */
 
 Route::resource('curriculum', 'CurriculumController');
-Route::resource('/', 'HomeController');
+Route::resource('/', 'HomeController')->middleware('auth');
+Route::get('auth', 'LoginController@index');
+Route::post('auth', 'LoginController@authenticate');
+Route::get('auth/logout', 'LoginController@logout');

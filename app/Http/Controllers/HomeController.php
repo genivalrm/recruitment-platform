@@ -55,6 +55,10 @@ class HomeController extends Controller
 		return redirect('/create')->with('message', 'Currículo enviado!');
 	}
 
+	public function show($in){
+
+	}
+
 	private function processAttachment($attachment)
 	{
 		if ($attachment->isValid()) {

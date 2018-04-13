@@ -11,5 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/login.js', 'public/js/login.js');
+//   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.styles('resources/assets/css/login.css', 'public/css/login.css').version();
+mix.copy('node_modules/material-components-web/dist/material-components-web.min.*', 'public/lib/');
