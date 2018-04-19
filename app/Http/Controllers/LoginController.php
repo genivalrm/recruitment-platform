@@ -19,7 +19,7 @@ class LoginController extends Controller
             // Authentication passed...
             return redirect()->intended('/');
         }
-        return "Ola";
+        return redirect()->intended('auth')->with('message', 'Dados Incorretos');
     }
 
     public function logout(){

@@ -18,17 +18,17 @@ class HomeController extends Controller
 			// dump(Curriculum::find($curriculum_id));
 		}
 		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('all-curriculums', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
 	}
 
 	public function create(){
-		return view('create-curriculum');	
+		return view('insert-curriculum');	
 	}
 
 	public function store(Request $in) {
 		
 		$curriculum = new Curriculum;
-		$curriculum->status = 'P'; // P = Pendente
+		$curriculum->status = '1'; // 1 = Pendente
 		$curriculum->attachment_id = $this->processAttachment($in->file('curriculum'));
 		$curriculum->save();
 
@@ -58,6 +58,11 @@ class HomeController extends Controller
 	public function show($in){
 
 	}
+
+	 public function edit($id)
+    {
+       
+    }
 
 	private function processAttachment($attachment)
 	{

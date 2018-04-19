@@ -7,6 +7,14 @@ use MongoDB\BSON\ObjectId;
 
 class CurriculumController extends Controller
 {
+	public function store(Request $in) {
+
+		$curriculum = Curriculum::find(decrypt($in->id));
+		$curriculum->status = $in->option;
+		$curriculum->save();
+
+		return redirect('/');
+	}
 
 	public function show($id)
 	{

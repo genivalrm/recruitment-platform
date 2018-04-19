@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Curriculos</title>
-	<link rel="stylesheet" href="css/views.css">
+	<link rel="stylesheet" href="css/view.css">
 	<link rel="stylesheet" href="lib/material-components-web.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -13,13 +13,13 @@
 	        {{ session('message') }}
 	    </div>
 	@endif
-	<a href="{{ action('LoginController@authenticate') }}"><i class="material-icons">account_box</i></a>
+	<a href="{{ action('LoginController@authenticate') }}"><i class="material-icons" title="Login">account_box</i></a>
 	<div class="container">
 	 	<div class="form">
 			<form class="add-profile" action="{{ action('HomeController@store') }}" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="row">
-					<h2>Enviar Currículo</h2>
+					<h3>Enviar Currículo</h3>
 					<!-- Name -->
 					<label class="label-sm">Nome:</span></label>
 					<input type="text" name="name" class="form-control" placeholder="Nome" required>
@@ -44,9 +44,9 @@
 					<textarea class="form-control" rows="3" name="tag"></textarea>
 					<!-- Submit -->
 					<button type="submit">Salvar</button>
-					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

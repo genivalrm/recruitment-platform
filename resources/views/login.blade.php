@@ -14,6 +14,11 @@
 				<input type="text" name="email" placeholder="email"/>
 				<input type="password" name="password" placeholder="password"/>
 				<button>login</button>
+				@if (session('message'))
+					<div class="message">
+						{{ session('message') }}
+					</div>
+				@endif
 			</form>
 		</div>
 	</div>	
