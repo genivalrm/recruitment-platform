@@ -17,13 +17,13 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/');
+            return redirect()->intended('curriculum');
         }
         return redirect()->intended('auth')->with('message', 'Dados Incorretos');
     }
 
     public function logout(){
     	auth()->logout();
-    	return redirect(action('LoginController@index'));
+    	return redirect(action('HomeController@index'));
     }
 }

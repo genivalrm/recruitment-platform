@@ -11,8 +11,8 @@
 |
 */
 
-Route::resource('curriculum', 'CurriculumController');
-Route::resource('/', 'HomeController')->middleware('auth');
+Route::resource('curriculum', 'CurriculumController')->middleware('auth');;
+Route::resource('/', 'HomeController');
 Route::get('auth', 'LoginController@index');
 Route::post('auth', 'LoginController@authenticate');
 Route::get('auth/logout', 'LoginController@logout');

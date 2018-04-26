@@ -9,16 +9,7 @@ use DB;
 class HomeController extends Controller
 {
 	public function index(){
-		$profiles = Profile::orderBy('created_at')->get();
-		$curriculum_ids = [];
-		foreach ($profiles as $i => $profile) {
-			$profile->curriculum_id = collect($profile->curriculum_id)->last();
-			$curriculum_ids[] = $profile->curriculum_id;
-			// $profile->curriculo = Curriculum::find($curriculum_id);
-			// dump(Curriculum::find($curriculum_id));
-		}
-		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+		return view('insert-curriculum');
 	}
 
 	public function create(){
@@ -36,33 +27,30 @@ class HomeController extends Controller
 		if ( $profile ) {
 			$profile->push('curriculum_id', $curriculum->id);
 			$profile->name = $in->name;
-			$profile->office = $in->office;
 			$profile->phone = $in->phone;
-			$profile->tag = $in->tag;
+			$profile->linkedin = $in->linkedin;
+			$profile->github = $in->github;
+			$profile->internship = $in->internship;
+			$profile->office = $in->office;
+
 			$profile->save();
 			return redirect('/create')->with('message', 'Currículo e Perfil atualizados!');
 		}
 		
 		$profile = new Profile;
 		$profile->name = $in->name;
-		$profile->office = $in->office;
 		$profile->phone = $in->phone;
 		$profile->email = $in->email;
-		$profile->tag = $in->tag;
+		$profile->linkedin = $in->linkedin;
+		$profile->github = $in->github;
+		$profile->internship = $in->internship;
+		$profile->office = $in->office;
+
 		$profile->push('curriculum_id', $curriculum->id);
 		$profile->save();
 
 		return redirect('/create')->with('message', 'Currículo enviado!');
 	}
-
-	public function show($in){
-
-	}
-
-	 public function edit($id)
-    {
-       
-    }
 
 	private function processAttachment($attachment)
 	{

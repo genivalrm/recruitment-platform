@@ -2,18 +2,39 @@
 
 use Illuminate\Http\Request;
 use App\Curriculum;
+use App\Profile;
 use DB;
 use MongoDB\BSON\ObjectId;
 
 class CurriculumController extends Controller
 {
+	public function index(Request $in){
+		if(!$in->name){
+			$profiles = Profile::orderBy('created_at')->get();	
+		}
+		else{
+			$name = str_replace(' ', '.*', $in->name);
+			$profiles = Profile::where('name', 'regex',"/$name/gi")->get();
+		}
+		$curriculum_ids = [];
+		foreach ($profiles as $i => $profile) {
+			$profile->curriculum_id = collect($profile->curriculum_id)->last();
+			$curriculum_ids[] = $profile->curriculum_id;
+			$profile->office = (array) $profile->office;
+			// $profile->curriculo = Curriculum::find($curriculum_id);
+			// dump(Curriculum::find($curriculum_id));
+		}
+		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
+		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+	}
+
 	public function store(Request $in) {
 
 		$curriculum = Curriculum::find(decrypt($in->id));
 		$curriculum->status = $in->option;
 		$curriculum->save();
 
-		return redirect('/');
+		return redirect('curriculum');
 	}
 
 	public function show($id)
