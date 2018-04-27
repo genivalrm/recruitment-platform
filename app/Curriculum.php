@@ -2,7 +2,7 @@
 
 class Curriculum extends \Moloquent
 {
-    public $fillable = ['status', 'attachment_id'];
+    public $fillable = ['attachment_id'];
 
     public function profile()
 	{

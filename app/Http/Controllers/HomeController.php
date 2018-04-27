@@ -3,13 +3,15 @@
 use Illuminate\Http\Request;
 use App\Profile;
 use App\Curriculum;
+use App\Charge;
 use DB;
 
 
 class HomeController extends Controller
 {
 	public function index(){
-		return view('insert-curriculum');
+		$chages = Charge::orderBy('created_at')->get();
+		return view('insert-curriculum', ['chages' => $chages]);
 	}
 
 	public function create(){
@@ -19,7 +21,6 @@ class HomeController extends Controller
 	public function store(Request $in) {
 		
 		$curriculum = new Curriculum;
-		$curriculum->status = '1'; // 1 = Pendente
 		$curriculum->attachment_id = $this->processAttachment($in->file('curriculum'));
 		$curriculum->save();
 
@@ -28,11 +29,14 @@ class HomeController extends Controller
 			$profile->push('curriculum_id', $curriculum->id);
 			$profile->name = $in->name;
 			$profile->phone = $in->phone;
-			$profile->linkedin = $in->linkedin;
-			$profile->github = $in->github;
 			$profile->internship = $in->internship;
-			$profile->office = $in->office;
-
+			$profile->tag = $in->chage;
+			if ($in->linkedin) {
+				$profile->linkedin = $in->linkedin;
+			}
+			if ($in->github) {
+				$profile->github = $in->github;
+			}
 			$profile->save();
 			return redirect('/create')->with('message', 'Currículo e Perfil atualizados!');
 		}
@@ -41,10 +45,14 @@ class HomeController extends Controller
 		$profile->name = $in->name;
 		$profile->phone = $in->phone;
 		$profile->email = $in->email;
-		$profile->linkedin = $in->linkedin;
-		$profile->github = $in->github;
 		$profile->internship = $in->internship;
-		$profile->office = $in->office;
+		$profile->tag = $in->chage;
+		if ($in->linkedin) {
+			$profile->linkedin = $in->linkedin;
+		}
+		if ($in->github) {
+			$profile->github = $in->github;
+		}
 
 		$profile->push('curriculum_id', $curriculum->id);
 		$profile->save();

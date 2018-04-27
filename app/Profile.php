@@ -1,7 +1,7 @@
 <?php namespace App;
 
 class Profile extends \Moloquent {
-	public $fillable = ['name', 'office', 'phone', 'email', 'tag'];
+	public $fillable = ['name', 'email', 'phone', 'internship', 'tag'];
 
 	public function setEmailAtributte($value)
 	{
