@@ -19,3 +19,7 @@ mix.styles('resources/assets/css/insert.css', 'public/css/insert.css');
 mix.styles('resources/assets/css/all.css', 'public/css/all.css');
 mix.styles('resources/assets/css/login.css', 'public/css/login.css').version();
 mix.copy(['node_modules/jquery/dist/jquery.min.js', 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js'], 'public/lib/');
+
+mix.browserSync({
+	proxy: '192.168.99.100:8080'
+});
