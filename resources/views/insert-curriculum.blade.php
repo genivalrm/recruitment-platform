@@ -76,36 +76,40 @@
                     </div>
                     <div class="mdl-grid pl-48">
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <ul class="demo-list-control mdl-list mt-0 pt-0 pl-0">
-                                <li class="mdl-list__item">
-                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
-                                        <span class="mdl-checkbox__label">Front-end</span>
-                                    </label>
-                                </li>
-                                <li class="mdl-list__item">
-                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
-                                        <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
-                                        <span class="mdl-checkbox__label">Back-end</span>
-                                    </label>
-                                </li>
-                            </ul>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <ul class="demo-list-control mdl-list mt-0 pt-0">
-                                <li class="mdl-list__item">
-                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3">
-                                        <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input">
-                                        <span class="mdl-checkbox__label">Financeiro</span>
-                                    </label>
-                                </li>
-                                <li class="mdl-list__item">
-                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
-                                        <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input">
-                                        <span class="mdl-checkbox__label">Auxiliar geral</span>
-                                    </label>
-                                </li>
-                            </ul>
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                <input type="checkbox" class="mdl-checkbox__input">
+                                <span class="mdl-checkbox__label">Front-end</span>
+                            </label>
                         </div>
                     </div>
                     <button class="submit-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-on-edge">
