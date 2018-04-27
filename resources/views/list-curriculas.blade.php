@@ -1,151 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Curriculos</title>
-  <script src="{{ mix('js/modal.js') }}" DEFER="DEFER"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="css/modal.css">
-  <link rel="stylesheet" href="css/view.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Currículos</title>
+
+    <script src="{{ mix('lib/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
+    <script src="{{ mix('js/list.js') }}" type="text/javascript" DEFER="DEFER"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="node_modules/dialog-polyfill/dialog-polyfill.css" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
+    <link rel="stylesheet" href="{{ mix('css/list.css') }}">
 </head>
+
 <body>
-  <!-- Search curriculum -->
-  <div class="container flex-center">
-    <form action="{{ action('CurriculumController@index') }}" method="get" class="width-80">
-      @csrf
-      <div class="mdl-textfield mdl-js-textfield width-80">
-        <input class="mdl-textfield__input" type="search" name="name">
-        <label class="mdl-textfield__label">Digite o Nome</label>
-      </div>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--primary">
-        Pesquisar
-      </button>
-    </form>
-    <div class="logout">
-      <a href="{{ action('LoginController@logout') }}"><i class="material-icons" title="Logout">account_box</i></a>
-    </div>
-  </div>
-  <!-- List curriculas -->
-  <div class="container flex-center">
-    <!-- Head -->
-    <div>
-      <label>Resultados</label>
-    </div>
-  </div>
-  <div class="container flex-center">
-    <!-- Results -->
-    @if(!$profiles)
-      <!-- No results -->
-      <p>Nenhum resultado encontrado</p>
-    @else
-      @foreach($profiles as $profile)
-        <div class="demo-card-event mdl-card mdl-shadow--2dp">
-          <div class="mdl-card__title mdl-card--expand">
-            <div>
-              <!-- Name -->
-              <i class="material-icons">person</i> {{ $profile->name }}<br>
-              <!-- Phone -->
-              <i class="material-icons">call</i> {{ $profile->phone }}<br>
-              <!-- Email -->
-              <i class="material-icons">email</i> {{ $profile->email }}<br>
-              <!-- Estágio -->
-              <i class="material-icons">info</i> 
-              @if($profile->internship)
-                Estágio<br>
-              @else
-                Não Estágio<br>
-              @endif
-              <!-- Office -->
-              Áreas de Ineteresse:<br>
-              @foreach($profile->office as $office)
-                @if($office == '1')
-                  - Área 1 <br>
-                @elseif($office == '2')
-                  - Área 2 <br>
-                @elseif($office == '3')
-                  - Área 3 <br>
-                @elseif($office == '4')
-                  - Área 4 <br>
-                @else
-                  - Área 5 <br>
-                @endif
-              @endforeach
-              <!-- Linkedin -->
-              @if($profile->linkedin)
-                Lin: {{ $profile->linkedin }} <br>
-              @endif
-              <!-- github -->
-              @if($profile->github)
-                Git: {{ $profile->github }} <br>
-              @endif
-              <!-- Status -->
-              Status: 
-              @if($curriculas[$profile->curriculum_id]->status == '1')
-                Pendente
-              @elseif($curriculas[$profile->curriculum_id]->status == '2')
-                Em Análise
-              @elseif($curriculas[$profile->curriculum_id]->status == '3')
-                Entrevista Marcada
-              @else
-                Encerrado
-              @endif
+    <div class="demo-layout-waterfall mdl-layout mdl-js-layout mdl-layout--no-desktop-drawer-button">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <!-- Top row, always visible -->
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">
+                    <img src="images/logo.png" class="logo" alt="You logo">
+                </span>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                          mdl-textfield--floating-label mdl-textfield--align-right">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" name="sample" id="nav-search">
+                    </div>
+                </div>
+                <!-- Icon button -->
+                <button class="mdl-button mdl-js-button mdl-button--icon ml-26">
+                    <i class="material-icons">exit_to_app</i>
+                </button>
             </div>
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" target="_blank" href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id))}}">
-              <i class="material-icons" title="Currículo">&#xE2BC;</i>
-            </a>
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect btn-info dialog-button" data="{{ encrypt($profile->curriculum_id) }}">
-              <i class="material-icons" title="Alterar Status">&#xE5D4;</i>
-            </a>
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-              <i class="material-icons" title="Tag's">&#xE86F;</i>
-            </a>
-          </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">
+                <img src="images/logo.png" class="logo-drawer" alt="You logo">
+            </span>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                          mdl-textfield--floating-label mdl-textfield--align-left pd-lr-16">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="drawer-search">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="sample" id="drawer-search">
+                </div>
+            </div>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
         </div>
-      @endforeach
-    @endif
-  </div>
-  <!-- Modal Status-->
-  <dialog id="dialog" class="mdl-dialog">
-    <h3 class="mdl-dialog__title">Alterar Status</h3>
-    <form action="{{ action('CurriculumController@store') }}" method="post">
-      @csrf
-      <input type="hidden" name="id">    
-      <div class="mdl-dialog__content">
-        <ul class='mdl-list'>
-          <li class="mdl-list__item">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-              <input type="radio" class="mdl-radio__button" name="option" value="1" checked>
-              <span class="mdl-radio__label">Pendente</span>
-            </label>
-          </li>
-          <li class="mdl-list__item">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-              <input type="radio" class="mdl-radio__button" name="option" value="2">
-              <span class="mdl-radio__label">Em Análise</span>
-            </label>
-          </li>
-          <li class="mdl-list__item">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-              <input type="radio" class="mdl-radio__button" name="option" value="3">
-              <span class="mdl-radio__label">Entrevista Marcada</span>
-            </label>
-          </li>
-          <li class="mdl-list__item">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-              <input type="radio" class="mdl-radio__button" name="option" value="4">
-              <span class="mdl-radio__label">Encerrado</span>
-            </label>
-          </li>
-        </ul>
-      </div>
-      <div class="mdl-dialog__actions">
-        <button type="submit" class="mdl-button bnt-sucess">OK</button>
-        <button type="button" class="mdl-button bnt-cancel">Cancel</button>
-      </div>
-    </form>
-  </dialog>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-grid pd-lr-64 pd-tb-60">
+                    @foreach($profiles as $profile)
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
+                                <div class="mdl-card__title column pr-48">
+                                    <h2 class="mdl-card__title-text self-center dont-break-out">{{ $profile->name }}</h2>
+                                    <div class="mdl-card__subtitle-text self-center">
+                                        @if($profile->internship)
+                                            <span class="mdl-chip chip-estagio">
+                                                <span class="mdl-chip__text">Estágio</span>
+                                            </span>
+                                        @else
+                                            <span class="mdl-chip chip-contrato">
+                                                <span class="mdl-chip__text">Contrato</span>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <!-- <hr class="mg-0 pd-0"> -->
+                                <div class="mdl-card__supporting-text">
+                                    <ul class="mdl-list pd-tb-0 mg-tb-0">
+                                        <li class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content">
+                                                <i class="material-icons mdl-list__item-icon">call</i>
+                                                <a href="tel:+5574991106578">{{ $profile->phone }}</a>
+                                            </span>
+                                        </li>
+                                        <li class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content">
+                                                <i class="material-icons mdl-list__item-icon">email</i>
+                                                <a class="dont-break-out" href="mailto:gabrielrafael2508@hotmail.com">{{ $profile->email }}</a>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mdl-card__menu">
+                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-discard" >
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <!-- <hr class="mg-0 pd-0"> -->
+                                <div class="mdl-card__actions flex space-between">
+                                    <!-- Colored icon button -->
+                                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id))}}">
+                                        <i class="material-icons icon-color">attachment</i>
+                                    </button>
+                                    @if($profile->github)
+                                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                                            <a href="{{ $profile->github }}" target="_blank">
+                                                <i class="mdl-textfield__icon fab fa-github icon-color font-24"></i>
+                                            </a>
+                                        </button>
+                                    @endif
+                                    @if($profile->linkedin)
+                                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                                            <a href="{{ $profile->linkedin }}" target="_blank">
+                                                <i class="mdl-textfield__icon fab fa-linkedin icon-color font-24"></i>
+                                            </a>
+                                        </button>
+                                    @endif
+                                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog">
+                                        <i class="material-icons icon-color">polymer</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </main>
+
+    </div>
+    <dialog class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Gabriel Rafael Gomes - TAGS</h4>
+        <div class="mdl-dialog__content">
+            <!-- Deletable Chip -->
+            <span class="mdl-chip mdl-chip--deletable">
+                <span class="mdl-chip__text">Front-end</span>
+                <button type="button" class="mdl-chip__action">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </span>
+            <span class="mdl-chip mdl-chip--deletable">
+                <span class="mdl-chip__text">User experience</span>
+                <button type="button" class="mdl-chip__action">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </span>
+            <span class="mdl-chip mdl-chip--deletable">
+                <span class="mdl-chip__text">Administração</span>
+                <button type="button" class="mdl-chip__action">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </span>
+            <span class="mdl-chip mdl-chip--deletable">
+                <span class="mdl-chip__text">Node.JS</span>
+                <button type="button" class="mdl-chip__action">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </span>
+            <span class="mdl-chip mdl-chip--deletable">
+                <span class="mdl-chip__text">JavaScript</span>
+                <button type="button" class="mdl-chip__action">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </span>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--primary close">Fechar</button>
+        </div>
+    </dialog>
 </body>
+
 </html>

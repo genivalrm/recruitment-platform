@@ -3,15 +3,15 @@
 use Illuminate\Http\Request;
 use App\Profile;
 use App\Curriculum;
-use App\Charge;
+use App\Office;
 use DB;
 
 
 class HomeController extends Controller
 {
 	public function index(){
-		$chages = Charge::orderBy('created_at')->get();
-		return view('insert-curriculum', ['chages' => $chages]);
+		$offices = Office::orderBy('created_at')->get();
+		return view('insert-curriculum', ['offices' => $offices]);
 	}
 
 	public function create(){

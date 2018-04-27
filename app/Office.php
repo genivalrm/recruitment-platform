@@ -1,5 +1,5 @@
 <?php namespace App;
 
-class Charge extends \Moloquent {
+class Office extends \Moloquent {
 	public $fillable = ['name'];
 }

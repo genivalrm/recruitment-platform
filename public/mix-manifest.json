@@ -1,10 +1,12 @@
 {
     "/js/modal.js": "/js/modal.js?id=78d26de8045dda91f7a1",
     "/js/login.js": "/js/login.js?id=b89ae0f1c93591bf9c05",
+    "/js/list.js": "/js/list.js?id=2fbe150cce72242a55a8",
     "/js/insert.js": "/js/insert.js?id=db8b91f09d25c80d876e",
     "/css/insert.css": "/css/insert.css?id=8db5ecfc06f6280bfe23",
+    "/css/list.css": "/css/list.css?id=84998281e5dc2d4e00a2",
     "/css/all.css": "/css/all.css?id=7b26903a37f600c5c892",
-    "/css/login.css": "/css/login.css?id=4280bbf1f61d9778c60e",
+    "/css/login.css": "/css/login.css?id=73496b8b7f081ea8a98d",
     "/lib/jquery.min.js": "/lib/jquery.min.js?id=a09e13ee94d51c524b7e",
     "/lib/jquery.mask.min.js": "/lib/jquery.mask.min.js?id=acb54232967a36f1df1d"
 }
