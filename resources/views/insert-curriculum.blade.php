@@ -72,45 +72,17 @@
                         </label>
                     </div>
                     <div class="pt-15">
-                        <p class="mg-0"> Áreas de interesse</p>
+                        <p class="mg-0"> Áreas de interesse*</p>
                     </div>
                     <div class="mdl-grid pl-48">
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                <input type="checkbox" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Front-end</span>
-                            </label>
-                        </div>
+                        @foreach($offices as $office)
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                    <input type="checkbox" name="office[]" value="{{ $office->id }}" class="mdl-checkbox__input">
+                                    <span class="mdl-checkbox__label">{{ $office->name }}</span>
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
                     <button class="submit-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-on-edge">
                         <i class="material-icons">send</i>
