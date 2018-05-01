@@ -102,9 +102,6 @@ body{
 .mdl-textfield.is-invalid .mdl-textfield__icon {
     color: #de3226 !important;
 }
-.mdl-checkbox{
-    font-weight: 300;
-}
 .mdl-cell{
     margin-left: 0;
 }

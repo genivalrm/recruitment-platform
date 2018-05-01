@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Curriculum;
 use App\Profile;
+use App\Office;
 use DB;
 use MongoDB\BSON\ObjectId;
 
@@ -20,7 +21,7 @@ class CurriculumController extends Controller
 		foreach ($profiles as $i => $profile) {
 			$profile->curriculum_id = collect($profile->curriculum_id)->last();
 			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->office = (array) $profile->office;
+			$profile->tag = Office::find((array) $profile->office)->pluck('name');
 			// $profile->curriculo = Curriculum::find($curriculum_id);
 			// dump(Curriculum::find($curriculum_id));
 		}

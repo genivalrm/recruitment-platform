@@ -24,11 +24,8 @@ class HomeController extends Controller
 		$curriculum->save();
 
 		//$tags = (array) $in->office;
-
 		// $tags = Office::find((array) $in->office)->pluck('name');
-
 		// $tags = Office::whereIn('_id', (array) $in->office)->get()->pluck('name');
-
 		// foreach ($tags as $i => $id) {
 		// 	$office = Office::where('_id', $id)->first();
 		// 	$id = $office->name;
@@ -40,8 +37,9 @@ class HomeController extends Controller
 			$profile->push('curriculum_id', $curriculum->id);
 			$profile->name = $in->name;
 			$profile->phone = $in->tel;
+			$profile->star = '0';
 			$profile->internship = $in->internship;
-			$profile->tag = $in->office;
+			$profile->office = $in->office;
 			if ($in->linkedin) {
 				$profile->linkedin = $in->linkedin;
 			}
@@ -55,9 +53,10 @@ class HomeController extends Controller
 		$profile = new Profile;
 		$profile->name = $in->name;
 		$profile->phone = $in->tel;
+		$profile->star = '0';
 		$profile->email = $in->email;
 		$profile->internship = $in->internship;
-		$profile->tag = $in->office;
+		$profile->office = $in->office;
 		if ($in->linkedin) {
 			$profile->linkedin = $in->linkedin;
 		}
