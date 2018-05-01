@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Currículos</title>
 
-    <script src="{{ mix('lib/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+    <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous" DEFER="DEFER"></script>
-    <script src="{{ mix('lib/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
-    <script src="{{ mix('lib/jquery.barrating.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+    <script src="{{ mix('lib/js/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+    <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+    <script src="{{ mix('lib/js/jquery.barrating.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
     <script src="{{ mix('js/list.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -21,9 +22,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
-    <link rel="stylesheet" href="{{ mix('lib/dialog-polyfill.css') }}">
+    <link rel="stylesheet" href="{{ mix('lib/css/dialog-polyfill.css') }}">
     <link rel="stylesheet" href="{{ mix('css/all.css') }}">
-    <link rel="stylesheet" href="{{ mix('lib/fontawesome-stars.css') }}">
+    <link rel="stylesheet" href="{{ mix('lib/css/fontawesome-stars.css') }}">
     <link rel="stylesheet" href="{{ mix('css/list.css') }}">
 
 </head>
@@ -104,7 +105,6 @@
                                     </div>
                                     <div class="mt-5">
                                         <select class="rating">
-                                            <option value="{{ $profile->star }}" selected></option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
