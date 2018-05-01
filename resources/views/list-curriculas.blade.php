@@ -103,8 +103,7 @@
                                         @endif
                                     </div>
                                     <div class="mt-5">
-                                        <select class="rating">
-                                            <option value="{{ $profile->star }}" selected></option>
+                                        <select class="rating" data-current-rating="{{ $profile->star }}">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -170,7 +169,7 @@
 
     </div>
     <dialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Gabriel Rafael Gomes - TAGS</h4>
+        <h4 class="mdl-dialog__title"></h4>
         <div class="mdl-dialog__content">
             <!-- Deletable Chip -->
             <span class="mdl-chip mdl-chip--deletable">
@@ -204,8 +203,25 @@
                 </button>
             </span>
         </div>
-        <div class="mdl-dialog__actions">
+        <div class="mdl-dialog__actions flex space-between">
             <button type="button" class="mdl-button mdl-js-button mdl-button--primary close">Fechar</button>
+            <form action="#" method="POST">
+                <div class="mdl-textfield mdl-js-textfield text-field-pd-0">
+                  <input class="mdl-textfield__input" name="new-tag" type="text" data-required="true">
+                  <label class="mdl-textfield__label">Adicionar tag</label>
+                </div>
+              </form>
+              {{-- <form action="#">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                    <i class="material-icons">search</i>
+                  </label>
+                  <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="sample6">
+                    <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                  </div>
+                </div>
+              </form> --}}
         </div>
     </dialog>
 </body>

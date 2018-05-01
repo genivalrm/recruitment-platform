@@ -31,6 +31,7 @@ a{
 }
 .mdl-textfield__expandable-holder .mdl-textfield__input{
     border-bottom-color: white;
+    color: white;
 }
 .mdl-card__title, .mdl-card__actions{
     background-color: #EFEBE9;
@@ -92,6 +93,9 @@ a{
 .mg-tb-0{
     margin-top: 0;
     margin-bottom: 0;
+}
+.text-field-pd-0{
+    margin: -20px 0 !important;
 }
 .mr-32{
     margin-right: 32px;
