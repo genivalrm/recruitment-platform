@@ -54,4 +54,31 @@ class CurriculumController extends Controller
 
 		return response(stream_get_contents($stream))->header('Content-Type', $mimeType);
 	}
+
+	public function updateStar(Request $in, $id){
+		$profile = Profile::find(decrypt($id));
+		$profile->star = $in->star;
+		$profile->save();
+	}
+
+	public function listTag($id){
+		$tag = Profile::find(decrypt($id))->tag;
+		$tag = Office::find((array) $tag)->pluck('name');
+		return [
+			'tag' => $tag,
+		]; 
+	}
+
+	public function insertTag(Request $in, $id){
+		$profile = Profile::find(decrypt($id));
+		$tag = Office::firstOrCreate(['name' => $in->tag])->_id;
+		$profile->tag = $profile->push('tag', $tag);
+	}
+
+	public function deletTag(Request $in, $id){
+		$profile = Profile::find(decrypt($id));
+		$tag = Office::find($in->tag)->_id;
+
+		$profile->tag = $profile->pull('tag', $tag);
+	}
 }

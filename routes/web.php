@@ -11,7 +11,11 @@
 |
 */
 
-Route::resource('curriculum', 'CurriculumController')->middleware('auth');;
+Route::resource('curriculum', 'CurriculumController')->middleware('auth');
+Route::get('curriculum/{id}/tag', 'CurriculumController@listTag');
+Route::delete('curriculum/{id}/tag', 'CurriculumController@deletTag');
+Route::post('curriculum/{id}/tag', 'CurriculumController@insertTag');
+Route::post('curriculum/{id}/rating', 'CurriculumController@updateStar');
 Route::resource('/', 'HomeController');
 Route::get('auth', 'LoginController@index');
 Route::post('auth', 'LoginController@authenticate');
