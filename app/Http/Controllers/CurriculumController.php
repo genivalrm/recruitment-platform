@@ -75,9 +75,10 @@ class CurriculumController extends Controller
 		$profile->tag = $profile->push('tag', $tag);
 	}
 
-	public function deletTag(Request $in, $id){
+	public function deleteTag(Request $in, $id){
 		$profile = Profile::find(decrypt($id));
-		$tag = Office::find($in->tag)->_id;
+
+		$tag = Office::where('name', $in->tag)->first()->id;
 
 		$profile->tag = $profile->pull('tag', $tag);
 	}
