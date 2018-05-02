@@ -40,12 +40,16 @@ a{
     color: #757575;
 }
 .mdl-layout__drawer-button i{
-    font: normal normal normal 24px/1 FontAwesome !important;
+    /* font: normal normal normal 24px/1 FontAwesome !important; */
     content: "\f0c9" !important;
 }
 /* utils */
 .flex{
     display: flex;
+}
+.center{
+    justify-content: center;
+    align-items: center;
 }
 .block{
     display: block;
@@ -99,6 +103,9 @@ a{
 }
 .mr-32{
     margin-right: 32px;
+}
+.mr-4{
+    margin-right: 4px;
 }
 .mt-5{
     margin-top: 5px;

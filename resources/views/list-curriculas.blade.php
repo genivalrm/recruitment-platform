@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Currículos</title>
 
     <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
@@ -104,7 +106,7 @@
                                         @endif
                                     </div>
                                     <div class="mt-5">
-                                        <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->_id }}">
+                                        <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ encrypt($profile->_id) }}">
                                             {{-- <option value=""></option> --}}
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -126,7 +128,7 @@
                                         <li class="mdl-list__item">
                                             <span class="mdl-list__item-primary-content">
                                                 <i class="mdl-list__item-icon fa fa-envelope" aria-hidden="true"></i>
-                                                <span>{{ $profile->email }}</span>
+                                                <span class="dont-break-out">{{ $profile->email }}</span>
                                             </span>
                                         </li>
                                     </ul>
@@ -158,7 +160,7 @@
                                             </a>
                                         </button>
                                     @endif
-                                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data="{{ encrypt($profile->_id) }}">
+                                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ encrypt($profile->_id) }}">
                                         <i class="mdl-textfield__icon fa fa-tags icon-color font-24" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -172,58 +174,16 @@
     </div>
     <dialog class="mdl-dialog">
         <h4 class="mdl-dialog__title"></h4>
-        <div class="mdl-dialog__content">
-            <!-- Deletable Chip -->
-            <span class="mdl-chip mdl-chip--deletable">
-                <span class="mdl-chip__text">Front-end</span>
-                <button type="button" class="mdl-chip__action">
-                    <i class="material-icons">cancel</i>
-                </button>
-            </span>
-            <span class="mdl-chip mdl-chip--deletable">
-                <span class="mdl-chip__text">User experience</span>
-                <button type="button" class="mdl-chip__action">
-                    <i class="material-icons">cancel</i>
-                </button>
-            </span>
-            <span class="mdl-chip mdl-chip--deletable">
-                <span class="mdl-chip__text">Administração</span>
-                <button type="button" class="mdl-chip__action">
-                    <i class="material-icons">cancel</i>
-                </button>
-            </span>
-            <span class="mdl-chip mdl-chip--deletable">
-                <span class="mdl-chip__text">Node.JS</span>
-                <button type="button" class="mdl-chip__action">
-                    <i class="material-icons">cancel</i>
-                </button>
-            </span>
-            <span class="mdl-chip mdl-chip--deletable">
-                <span class="mdl-chip__text">JavaScript</span>
-                <button type="button" class="mdl-chip__action">
-                    <i class="material-icons">cancel</i>
-                </button>
-            </span>
-        </div>
+        <div class="mdl-dialog__content"></div>
         <div class="mdl-dialog__actions flex space-between">
-            <button type="button" class="mdl-button mdl-js-button mdl-button--primary close">Fechar</button>
-            <form action="#" method="POST">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--primary ev-close-dialog">Fechar</button>
+            <form action="#" method="POST" class="ev-submit-tag">
+
                 <div class="mdl-textfield mdl-js-textfield text-field-pd-0">
                   <input class="mdl-textfield__input" name="new-tag" type="text" data-required="true">
                   <label class="mdl-textfield__label">Adicionar tag</label>
                 </div>
-              </form>
-              {{-- <form action="#">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                  <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                    <i class="material-icons">search</i>
-                  </label>
-                  <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" id="sample6">
-                    <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                  </div>
-                </div>
-              </form> --}}
+            </form>
         </div>
     </dialog>
 </body>
