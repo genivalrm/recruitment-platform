@@ -37,10 +37,13 @@ $('.rating').each(function (index, el) {
         theme: 'fontawesome-stars',
         initialRating: $El.attr('data-current-rating'),
         showSelectedRating: false,
+        allowEmpty: true,
         onSelect: function (value, text, event) {
             if (typeof (event) !== 'undefined') {
                 // rating was selected by a user
-                console.log(event.target);
+                console.log('/curriculum/' + $El.attr('data-profile-id') + '/rating');
+                if(value) console.log('value is ' + value);
+                else console.log('value is 0');
             } else {
                 // rating was selected programmatically
                 // by calling `set` method

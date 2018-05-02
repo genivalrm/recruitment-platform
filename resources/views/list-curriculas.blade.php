@@ -104,7 +104,8 @@
                                         @endif
                                     </div>
                                     <div class="mt-5">
-                                        <select class="rating" data-current-rating="{{ $profile->star }}">
+                                        <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->_id }}">
+                                            {{-- <option value=""></option> --}}
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
