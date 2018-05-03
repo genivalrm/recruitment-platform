@@ -31,6 +31,7 @@ a{
 }
 .mdl-textfield__expandable-holder .mdl-textfield__input{
     border-bottom-color: white;
+    color: white;
 }
 .mdl-card__title, .mdl-card__actions{
     background-color: #EFEBE9;
@@ -39,71 +40,22 @@ a{
     color: #757575;
 }
 .mdl-layout__drawer-button i{
-    font: normal normal normal 24px/1 FontAwesome !important;
+    /* font: normal normal normal 24px/1 FontAwesome !important; */
     content: "\f0c9" !important;
 }
-/* utils */
-.flex{
-    display: flex;
+
+
+
+
+/* personalization */
+.text-field-pd-0{
+    margin: -20px 0 !important;
 }
-.block{
-    display: block;
-}
-.space-between{
-    justify-content: space-between;
-}
-.self-center{
-    align-self: center;
-}
-.column{
-    flex-direction: column;
-}
-.pr-48{
-    padding-right: 48px;
-}
-.pd-tb-60{
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-.pd-lr-64{
-    padding-left: 64px;
-    padding-right: 64px;
-}
-.pd-lr-16{
-    padding-left: 16px;
-    padding-right: 16px;
-}
-.pd-tb-0{
-    padding-top: 0;
-    padding-bottom: 0;
-}
-.pd-0{
-    padding: 0;
-}
-.pb-5{
-    padding-bottom: 5px;
-}
-.ml-26{
-    margin-left: 26px;
-}
-.mg-0{
-    margin: 0;
-}
-.mg-tb-0{
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.mr-32{
-    margin-right: 32px;
-}
-.mt-5{
-    margin-top: 5px;
-}
-.font-24{
+
+.icon-responsive{
     font-size: 24px;
 }
 
-/* personalization */
 .icon-color{
     color: #2f2e33;
 }
@@ -180,4 +132,11 @@ a{
 }
 .font-white{
     color: white !important;
+}
+
+
+@media (max-width: 1366px) {
+  .icon-responsive {
+    font-size: 20px;
+   }
 }

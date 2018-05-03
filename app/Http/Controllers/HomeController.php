@@ -10,14 +10,14 @@ use DB;
 class HomeController extends Controller
 {
 	public function index(){
-		$offices = Office::orderBy('created_at')->get();
+		$offices = Office::where('is_office', 1)->orderBy('created_at')->get();
 		//foreach ($offices as $office) {
 		//	$office->id = crypt($office->id);
 		//}
 		return view('insert-curriculum', ['offices' => $offices]);
 	}
 
-	public function store(Request $in) {
+	public function store(Request $in){
 		
 		$curriculum = new Curriculum;
 		$curriculum->attachment_id = $this->processAttachment($in->file('upload-btn'));
@@ -70,8 +70,12 @@ class HomeController extends Controller
 		return redirect('/');
 	}
 
-	private function processAttachment($attachment)
-	{
+	public function archive($id){
+		$profile = Profile::find(decrypt($id));
+		$profile->archived = true;
+	}
+	
+	private function processAttachment($attachment){
 		if ($attachment->isValid()) {
 			$bucket = DB::getMongoDB()->selectGridFSBucket(['bucketName' => 'attachment']);
 			$file = fopen($attachment->getRealPath(), 'rb');

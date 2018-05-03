@@ -144,7 +144,7 @@
                                 <div class="mdl-card__actions flex space-between">
                                     <!-- Colored icon button -->
                                     <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                                        <a href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id))}}" target="_blank">
+                                        <a href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id)) }}" target="_blank">
                                             <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i>
                                         </a>
                                     </button>

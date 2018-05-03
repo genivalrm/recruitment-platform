@@ -11,12 +11,15 @@
 |
 */
 
-Route::resource('curriculum', 'CurriculumController')->middleware('auth');
-Route::get('curriculum/{id}/tag', 'CurriculumController@listTag');
-Route::post('curriculum/{id}/tag/delete', 'CurriculumController@deleteTag');
-Route::post('curriculum/{id}/tag', 'CurriculumController@insertTag');
-Route::post('curriculum/{id}/rating', 'CurriculumController@updateStar');
-Route::resource('/', 'HomeController');
+
+Route::get('auth/logout', 'LoginController@logout');
 Route::get('auth', 'LoginController@index');
 Route::post('auth', 'LoginController@authenticate');
-Route::get('auth/logout', 'LoginController@logout');
+Route::get('curriculum/archived', 'CurriculumController@listArchived')->middleware('auth');
+Route::post('curriculum/{id}/tag/delete', 'CurriculumController@deleteTag')->middleware('auth');
+Route::post('curriculum/{id}/tag', 'CurriculumController@insertTag')->middleware('auth');
+Route::get('curriculum/{id}/tag', 'CurriculumController@listTag')->middleware('auth');
+Route::post('curriculum/{id}/rating', 'CurriculumController@updateStar')->middleware('auth');
+Route::post('curriculum/{id}/archive', 'HomeController@archive')->middleware('auth');
+Route::resource('curriculum', 'CurriculumController')->middleware('auth');
+Route::resource('/', 'HomeController');
