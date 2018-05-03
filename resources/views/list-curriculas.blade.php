@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Currículos</title>
+    <title>Currículo - Dashboard</title>
 
     <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
@@ -38,7 +38,9 @@
             <div class="mdl-layout__header-row">
                 <!-- Title -->
                 <span class="mdl-layout-title">
-                    <img src="images/logo.png" class="logo" alt="You logo">
+                    <a href="/curriculum">
+                        <img src="images/logo.png" class="logo" alt="You logo">
+                    </a>
                 </span>
                 <div class="mdl-layout-spacer"></div>
                 <div class="flex center">
@@ -67,6 +69,7 @@
                 <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
                 <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link font-white" href="\curriculum">Home</a>
                     <a class="mdl-navigation__link font-white" href="">Arquivados</a>
                 </nav>
             </div>
@@ -85,6 +88,7 @@
                 </div>
             </div>
             <nav class="mdl-navigation">
+                <a class="mdl-navigation__link font-white" href="\curriculum">Home</a>
                 <a class="mdl-navigation__link" href="">Arquivados</a>
             </nav>
         </div>

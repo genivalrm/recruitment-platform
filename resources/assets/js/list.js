@@ -135,8 +135,8 @@ $('.rating').each(function (index, el) {
                     value = 0;
 
                 $.post(route, { star: value }, function (data, status, xhr) {
-                    if (status === "success") {
-                        populateDialog(profile_id);
+                    if (status === 'success') {
+                        console.log('rating updated: ' + value);
                     }
                     else {
                         console.log(xhr);
@@ -158,6 +158,7 @@ function animate(element) {
     }, 450);
 }
 
+//mostra o spinner no dialog
 function showSpinner(){
     $('.mdl-dialog__content').html('<div class="flex center"><div class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div></div>'); //mostra o loading
     componentHandler.upgradeElement($('.mdl-js-spinner')[0]); // atualiza o elemento para que o loading funcione
@@ -168,8 +169,7 @@ $(window).on('load', function () {
     $('input[data-required=true]').attr("required", "");
 });
 
-// $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
+//to replace mdl-drawer sandwiche icon
 $(document).ready(function () {
-    //to replace mdl-drawer sandwiche icon
     $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
 });
