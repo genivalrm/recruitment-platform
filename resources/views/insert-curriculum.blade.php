@@ -35,18 +35,18 @@
                     @csrf
                     <div class="mdl-textfield mdl-js-textfield w-full">
                         <i class="mdl-textfield__icon material-icons">person</i>
-                        <input class="mdl-textfield__input" name="name" type="text" required>
+                        <input class="mdl-textfield__input" name="name" type="text" data-required="true">
                         <label class="mdl-textfield__label">Nome*</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield w-full">
                         <i class="mdl-textfield__icon material-icons">email</i>
                         <input class="mdl-textfield__input" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                            required>
+                        data-required="true">
                         <label class="mdl-textfield__label">E-mail*</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield w-full">
                         <i class="mdl-textfield__icon material-icons">call</i>
-                        <input class="mdl-textfield__input" name="tel" type="text" pattern=".{14,15}" required>
+                        <input class="mdl-textfield__input" name="tel" type="text" pattern=".{14,15}" data-required="true">
                         <label class="mdl-textfield__label">Telefone*</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield w-full">
@@ -72,7 +72,7 @@
                             <span class="mdl-switch__label font-16">Estágio</span>
                         </label>
                     </div>
-                    <div class="pt-15">
+                    <div class="pt-15 ml-4">
                         <p class="mg-0"> Áreas de interesse*</p>
                     </div>
                     <div class="mdl-grid pl-48">
