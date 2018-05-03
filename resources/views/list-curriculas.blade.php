@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
     <link rel="stylesheet" href="{{ mix('lib/css/dialog-polyfill.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/all.css') }}">
     <link rel="stylesheet" href="{{ mix('lib/css/fontawesome-stars.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/utils.css') }}">
     <link rel="stylesheet" href="{{ mix('css/list.css') }}">
 
 </head>
@@ -41,24 +41,26 @@
                     <img src="images/logo.png" class="logo" alt="You logo">
                 </span>
                 <div class="mdl-layout-spacer"></div>
-                <form action="{{ action('CurriculumController@index') }}" method="get">
-                    @csrf
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                              mdl-textfield--floating-label mdl-textfield--align-right">
-                        <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
-                            <i class="fa fa-search font-24 font-white" aria-hidden="true"></i>
-                        </label>
-                        <div class="mdl-textfield__expandable-holder">
-                            <input class="mdl-textfield__input" type="search" name="name" id="nav-search">
+                <div class="flex center">
+                    <form action="{{ action('CurriculumController@index') }}" method="get">
+                        @csrf
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                                mdl-textfield--floating-label mdl-textfield--align-right text-field-pd-0">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
+                                <i class="fa fa-search icon-responsive font-white" aria-hidden="true"></i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="search" name="name" id="nav-search">
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <!-- Icon button -->
-                <button class="mdl-button mdl-js-button mdl-button--icon ml-26">
-                     <a href="{{ action('LoginController@logout') }}">
-                        <i class="fa fa-sign-out font-24 font-white" aria-hidden="true"></i>
-                    </a>
-                </button>
+                    </form>
+                    <!-- Icon button -->
+                    <button class="mdl-button mdl-js-button mdl-button--icon ml-26 mb-4">
+                        <a href="{{ action('LoginController@logout') }}">
+                            <i class="fa fa-sign-out icon-responsive font-white" aria-hidden="true"></i>
+                        </a>
+                    </button>
+                </div>
             </div>
             <!-- Bottom row, not visible on scroll -->
             <div class="mdl-layout__header-row">
@@ -76,7 +78,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                           mdl-textfield--floating-label mdl-textfield--align-left pd-lr-16">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="drawer-search">
-                    <i class="fa fa-search font-24" aria-hidden="true"></i>
+                    <i class="fa fa-search icon-responsive" aria-hidden="true"></i>
                 </label>
                 <div class="mdl-textfield__expandable-holder">
                     <input class="mdl-textfield__input" type="text" name="sample" id="drawer-search">
@@ -121,21 +123,21 @@
                                     <ul class="mdl-list pd-tb-0 mg-tb-0">
                                         <li class="mdl-list__item">
                                             <span class="mdl-list__item-primary-content">
-                                                <i class="mdl-list__item-icon fa fa-phone font-24" aria-hidden="true"></i>
-                                                <span>{{ $profile->phone }}</span>
+                                                <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i>
+                                                <a href="tel:+55#">{{ $profile->phone }}</a>
                                             </span>
                                         </li>
                                         <li class="mdl-list__item">
                                             <span class="mdl-list__item-primary-content">
-                                                <i class="mdl-list__item-icon fa fa-envelope" aria-hidden="true"></i>
-                                                <span class="dont-break-out">{{ $profile->email }}</span>
+                                                <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i>
+                                                <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                                             </span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="mdl-card__menu">
                                     <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-archive">
-                                        <i class="fa fa-archive" aria-hidden="true"></i>
+                                        <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
                                     </button>
                                 </div>
                                 <!-- <hr class="mg-0 pd-0"> -->
@@ -143,25 +145,25 @@
                                     <!-- Colored icon button -->
                                     <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
                                         <a href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id))}}" target="_blank">
-                                            <i class="mdl-textfield__icon fa fa-paperclip icon-color font-24" aria-hidden="true"></i>
+                                            <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i>
                                         </a>
                                     </button>
                                     @if($profile->github)
                                         <button class="mdl-button mdl-js-button mdl-button--icon">
                                             <a href="https://github.com/Gabrielr2508" target="_blank">
-                                                <i class="mdl-textfield__icon fa fa-github icon-color font-24"></i>
+                                                <i class="mdl-textfield__icon fa fa-github icon-color icon-responsive"></i>
                                             </a>
                                         </button>
                                     @endif
                                     @if($profile->linkedin)
                                         <button class="mdl-button mdl-js-button mdl-button--icon">
                                             <a href="https://linkedin.com/in/GabrielRGomes" target="_blank">
-                                                <i class="mdl-textfield__icon fa fa-linkedin-square icon-color font-24"></i>
+                                                <i class="mdl-textfield__icon fa fa-linkedin-square icon-color icon-responsive"></i>
                                             </a>
                                         </button>
                                     @endif
                                     <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ encrypt($profile->_id) }}">
-                                        <i class="mdl-textfield__icon fa fa-tags icon-color font-24" aria-hidden="true"></i>
+                                        <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>

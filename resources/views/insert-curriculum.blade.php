@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
+    <link rel="stylesheet" href="{{ mix('css/utils.css') }}">
     <link rel="stylesheet" href="{{ mix('css/insert.css') }}">
 </head>
 
@@ -61,9 +62,9 @@
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--file w-full">
                         <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
                             <i class="material-icons">attach_file</i>
-                            <input type="file" name="upload-btn" required>
+                            <input type="file" name="upload-btn" accept=".pdf" required>
                         </div>
-                        <input class="mdl-textfield__input w-file" placeholder="Selecione seu currículo*" type="text" name="upload-file" readonly/>
+                        <input class="mdl-textfield__input w-file" placeholder="Selecione seu currículo (.pdf)*" type="text" name="upload-file" readonly/>
                     </div>
                     <div class="pd-20-tb ml-48">
                         <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">

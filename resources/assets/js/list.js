@@ -168,7 +168,7 @@ $(window).on('load', function () {
     $('input[data-required=true]').attr("required", "");
 });
 
-$(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
+// $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
 $(document).ready(function () {
     //to replace mdl-drawer sandwiche icon
     $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
