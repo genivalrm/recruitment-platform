@@ -39,7 +39,7 @@
                 <!-- Title -->
                 <span class="mdl-layout-title">
                     <a href="/curriculum">
-                        <img src="images/logo.png" class="logo" alt="You logo">
+                        <img src="../images/logo.png" class="logo" alt="You logo">
                     </a>
                 </span>
                 <div class="mdl-layout-spacer"></div>
@@ -70,13 +70,13 @@
             <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link font-white" href="\curriculum">Home</a>
-                    <a class="mdl-navigation__link font-white" href="">Arquivados</a>
+                    <a class="mdl-navigation__link font-white" href="\curriculum\archived">Arquivados</a>
                 </nav>
             </div>
         </header>
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">
-                <img src="images/logo.png" class="logo-drawer" alt="Sysvale logo white">
+                <img src="../images/logo.png" class="logo-drawer" alt="Sysvale logo white">
             </span>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                           mdl-textfield--floating-label mdl-textfield--align-left pd-lr-16">
@@ -89,7 +89,7 @@
             </div>
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link font-white" href="\curriculum">Home</a>
-                <a class="mdl-navigation__link" href="">Arquivados</a>
+                <a class="mdl-navigation__link" href="\curriculum\archived">Arquivados</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
@@ -140,9 +140,14 @@
                                     </ul>
                                 </div>
                                 <div class="mdl-card__menu">
-                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-archive">
-                                        <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
-                                    </button>
+                                    @if($profile->archived)
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-restore" data-profile-id="{{ encrypt($profile->_id) }}">
+                                            <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>
+                                    @else
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-archive" data-profile-id="{{ encrypt($profile->_id) }}">
+                                            <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
+                                    @endif
+                                        </button>
                                 </div>
                                 <!-- <hr class="mg-0 pd-0"> -->
                                 <div class="mdl-card__actions flex space-between">
