@@ -1,3 +1,15 @@
+$(window).on('load', function () {
+    //to make required fields not red
+    $('input[data-required=true]').attr("required", "");
+    //rating widget
+    initializeRating();
+});
+
+//to replace mdl-drawer sandwiche icon
+$(document).ready(function () {
+    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
+});
+
 //dialog
 var dialog = document.querySelector('dialog');
 var dialog_profile = '';
@@ -12,67 +24,58 @@ $.ajaxSetup({
 // EVENTOS
 //=====================================================
 //curriculum archiving
-document.querySelectorAll('.ev-archive')
-    .forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            animate(this.parentNode.parentNode.parentNode);
+$(document).on('click', '.ev-archive', function () {
+    animate(this.parentNode.parentNode.parentNode);
 
-            let profile_id = $(this).attr('data-profile-id');
-            let route = '../curriculum/' + profile_id + '/archive'
+    let profile_id = $(this).attr('data-profile-id');
+    let route = '../curriculum/' + profile_id + '/archive'
 
-            curriculumStateChanger(route);
-        });
-    });
+    curriculumStateChanger(route, 'archived', '.archived-section');
+});
 
 //curriculum restore
-document.querySelectorAll('.ev-restore')
-    .forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            animate(this.parentNode.parentNode.parentNode);
+$(document).on('click', '.ev-restore', function () {
 
-            let profile_id = $(this).attr('data-profile-id');
-            let route = '../curriculum/' + profile_id + '/restore'
+    animate(this.parentNode.parentNode.parentNode);
 
-            curriculumStateChanger(route);
-        });
-    });
+    let profile_id = $(this).attr('data-profile-id');
+    let route = '../curriculum/' + profile_id + '/restore'
 
+    curriculumStateChanger(route, 'notarchived', '.not-archived-section');
+});
 //dialog open button
-document.querySelectorAll('.ev-open-dialog')
-    .forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            let content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
+$(document).on('click', '.ev-open-dialog', function (btn) {
+    let content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
 
-            let modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
-            document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
+    let modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
+    document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
 
-            showSpinner();
+    showSpinner();
 
-            dialog_profile = $(this).attr('data-profile-id');
+    dialog_profile = $(this).attr('data-profile-id');
 
-            populateDialog(dialog_profile);
+    populateDialog(dialog_profile);
 
 
 
-            dialog.showModal();
-        });
-    });
+    dialog.showModal();
+});
 
 //dialog close button
-dialog.querySelector('.ev-close-dialog').addEventListener('click', function () {
+$(document).on('click', '.ev-close-dialog', function () {
     dialog.close();
 });
 
 
 
 //ação de enviar uma nova tag
-$('.ev-submit-tag').submit(function (event) {
+$(document).on('submit', '.ev-submit-tag', function (event) {
     event.preventDefault();
 
     showSpinner();
 
     let value = $(this).find('input[name="new-tag"]').val();
-    let route = 'curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
+    let route = '../curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
 
     $.post(route, { tag: value }, function (data, status, xhr) {
         if (status === 'success') {
@@ -90,14 +93,14 @@ $('.ev-submit-tag').submit(function (event) {
 //==========================================================================
 //recupera as tags do perfil e coloca no dialog
 function populateDialog(profile_id) {
-    let route = 'curriculum/' + profile_id + '/tag' //monta a rota da requisição
+    let route = '../curriculum/' + profile_id + '/tag' //monta a rota da requisição
 
     $.get(route, function (data, status) {  //requisita as tags do curriculo
         if (status === 'success') {
             renderData(data.tag)
         }
         else {
-            console.loge(status);
+            console.log(status);
         }
     });
 
@@ -117,7 +120,7 @@ function populateDialog(profile_id) {
 }
 //adiciona o listener aos botões de excluir tag
 function updateTagBtn(profile_id) {
-    let route = 'curriculum/' + profile_id + '/tag/delete' //monta a rota da requisição
+    let route = '../curriculum/' + profile_id + '/tag/delete' //monta a rota da requisição
     document.querySelectorAll('.ev-remove-tag')
         .forEach(function (btn) {
             btn.addEventListener('click', function () {
@@ -135,39 +138,41 @@ function updateTagBtn(profile_id) {
         });
 }
 
-//initialize rating selects
-$('.rating').each(function (index, el) {
-    let $El = $(el);
-    let profile_id = $El.attr('data-profile-id');
-    let route = '/curriculum/' + profile_id + '/rating';
 
-    $El.barrating({
-        theme: 'fontawesome-stars',
-        initialRating: $El.attr('data-current-rating'),
-        showSelectedRating: false,
-        allowEmpty: true,
-        onSelect: function (value, text, event) {
-            if (typeof (event) !== 'undefined') {
-                // rating was selected by a user
-                if (!value)
-                    value = 0;
+function initializeRating() {
+    //initialize rating selects
+    $('.rating').each(function (index, el) {
+        let $El = $(el);
+        let profile_id = $El.attr('data-profile-id');
+        let route = '../curriculum/' + profile_id + '/rating';
 
-                $.post(route, { star: value }, function (data, status, xhr) {
-                    if (status === 'success') {
-                        console.log('rating updated: ' + value);
-                    }
-                    else {
-                        console.log(xhr);
-                    }
-                });
-            } else {
-                // rating was selected programmatically
-                // by calling `set` method
+        $El.barrating({
+            theme: 'fontawesome-stars',
+            initialRating: $El.attr('data-current-rating'),
+            showSelectedRating: false,
+            allowEmpty: true,
+            onSelect: function (value, text, event) {
+                if (typeof (event) !== 'undefined') {
+                    // rating was selected by a user
+                    if (!value)
+                        value = 0;
+
+                    $.post(route, { star: value }, function (data, status, xhr) {
+                        if (status === 'success') {
+                            console.log('rating updated: ' + value);
+                        }
+                        else {
+                            console.log(xhr);
+                        }
+                    });
+                } else {
+                    // rating was selected programmatically
+                    // by calling `set` method
+                }
             }
-        }
+        });
     });
-});
-
+}
 //anima o elemento com um fade-out
 function animate(element) {
     element.classList.add('removed-item');
@@ -182,24 +187,35 @@ function showSpinner() {
     componentHandler.upgradeElement($('.mdl-js-spinner')[0]); // atualiza o elemento para que o loading funcione
 }
 
-//to make required fields not red
-$(window).on('load', function () {
-    $('input[data-required=true]').attr("required", "");
-});
-
-//to replace mdl-drawer sandwiche icon
-$(document).ready(function () {
-    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
-});
-
 //realiza a requisição de mudança de estado
-function curriculumStateChanger(route){
+function curriculumStateChanger(route, nextState, section) {
     $.post(route, {}, function (data, status, xhr) {
         if (status === 'success') {
             console.log('State changed');
+            cardSectionUpdater(nextState, section);
         }
         else {
             console.log(xhr);
         }
     });
+}
+//requisita para o back a view com os cards atuais
+function cardSectionUpdater(type, section) {
+    let route = '../curriculum/' + type;
+
+    $.get(route, function (data, status) {  //requisita as tags do curriculo
+        if (status === 'success') {
+            renderSection(data, section);
+        }
+        else {
+            console.log(status);
+        }
+    });
+}
+//atualiza o html da view e o rating widget
+function renderSection(data, section) {
+    let element = $(section);
+    element.empty();
+    element.append(data);
+    initializeRating();
 }

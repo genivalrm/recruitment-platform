@@ -6,19 +6,30 @@ use App\Profile;
 use App\Office;
 use DB;
 use MongoDB\BSON\ObjectId;
+use View;
 
 class CurriculumController extends Controller
 {
 	public function index(Request $in){
 		if(!$in->name){
-			$profiles = Profile::where('archived', '!=', true)->orderBy('created_at')->get();	
+			$profiles = 
+			$archived = Profile::where('archived', true)->orderBy('created_at')->get();
+			$not_archived = Profile::where('archived', '!=', true)->orderBy('created_at')->get();
 		}
 		else{
 			$name = str_replace(' ', '.*', $in->name);
 			$profiles = Profile::where('name', 'regex',"/$name/gi")->get();
 		}
 		$curriculum_ids = [];
-		foreach ($profiles as $i => $profile) {
+
+		foreach ($archived as $i => $profile) {
+			$profile->curriculum_id = collect($profile->curriculum_id)->last();
+			$curriculum_ids[] = $profile->curriculum_id;
+			$profile->tag = Office::find((array) $profile->office)->pluck('name');
+			// $profile->curriculo = Curriculum::find($curriculum_id);
+			// dump(Curriculum::find($curriculum_id));
+		}
+		foreach ($not_archived as $i => $profile) {
 			$profile->curriculum_id = collect($profile->curriculum_id)->last();
 			$curriculum_ids[] = $profile->curriculum_id;
 			$profile->tag = Office::find((array) $profile->office)->pluck('name');
@@ -26,7 +37,8 @@ class CurriculumController extends Controller
 			// dump(Curriculum::find($curriculum_id));
 		}
 		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+
+		return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived, 'curriculas' => $curriculas]);
 	}
 
 	public function store(Request $in){
@@ -92,9 +104,21 @@ class CurriculumController extends Controller
 			// dump(Curriculum::find($curriculum_id));
 		}
 		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+		return view('card-section', ['profiles' => $profiles, 'curriculas' => $curriculas]);
 	}
-
+	public function listNotArchived(){
+		$profiles = Profile::where('archived', '!=', true)->orderBy('created_at')->get();
+		$curriculum_ids = [];
+		foreach ($profiles as $i => $profile) {
+			$profile->curriculum_id = collect($profile->curriculum_id)->last();
+			$curriculum_ids[] = $profile->curriculum_id;
+			$profile->tag = Office::find((array) $profile->office)->pluck('name');
+			// $profile->curriculo = Curriculum::find($curriculum_id);
+			// dump(Curriculum::find($curriculum_id));
+		}
+		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
+		return view('card-section', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+	}
 	public function archive($id){
 		$profile = Profile::find(decrypt($id));
 		$profile->archived = true;

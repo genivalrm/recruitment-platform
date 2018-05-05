@@ -8,14 +8,19 @@ a{
 .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
     padding-right: 0;
  }
- .mdl-layout__header{
+ .mdl-layout__header, .mdl-layout__tab-bar, .mdl-layout__tab-bar-button{
      background-color: #315199;
  }
-
+ .mdl-layout.is-upgraded .mdl-layout__tab.is-active{
+    color: rgba(255, 255, 255, 1.0);
+ }
+ .mdl-layout__tab{
+    color: rgba(255, 255, 255, 0.6);
+ }
 .mdl-layout__drawer{
     background-color: #315199;
     border-right-color: #315199;
-    color: white;
+
 }
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
     color: white;
@@ -84,7 +89,7 @@ a{
 }
 
 .mdl-dialog{
-    max-width: 512px;
+    max-width: 460px;
     min-width: 360px;
     width: 100%;
 }
@@ -140,3 +145,12 @@ a{
     font-size: 20px;
    }
 }
+
+@media (max-width: 472px) {
+    .mdl-dialog {
+      max-width: 90%;
+     }
+    .ev-submit-tag{
+         width: 100%;
+     }
+  }

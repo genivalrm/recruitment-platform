@@ -18,6 +18,9 @@
     align-items: center;
     justify-content: center;
 }
+.wrap-reverse{
+    flex-wrap: wrap-reverse;
+}
 .block{
     display: block;
 }
