@@ -20,6 +20,8 @@ Route::post('curriculum/{id}/tag/delete', 'CurriculumController@deleteTag')->mid
 Route::post('curriculum/{id}/tag', 'CurriculumController@insertTag')->middleware('auth');
 Route::get('curriculum/{id}/tag', 'CurriculumController@listTag')->middleware('auth');
 Route::post('curriculum/{id}/rating', 'CurriculumController@updateStar')->middleware('auth');
-Route::post('curriculum/{id}/archive', 'HomeController@archive')->middleware('auth');
+Route::post('curriculum/{id}/archive', 'CurriculumController@archive')->middleware('auth');
+Route::post('curriculum/{id}/restore', 'CurriculumController@restore')->middleware('auth');
+// Route::delete('curriculum/{id}', 'CurriculumController@delete')->middleware('auth');
 Route::resource('curriculum', 'CurriculumController')->middleware('auth');
 Route::resource('/', 'HomeController');

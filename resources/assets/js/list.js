@@ -1,6 +1,6 @@
 //dialog
 var dialog = document.querySelector('dialog');
-var dialogProfile = '';
+var dialog_profile = '';
 
 $.ajaxSetup({
     headers: {
@@ -11,11 +11,29 @@ $.ajaxSetup({
 //=====================================================
 // EVENTOS
 //=====================================================
-//animation to curriculum archiving
+//curriculum archiving
 document.querySelectorAll('.ev-archive')
     .forEach(function (btn) {
         btn.addEventListener('click', function () {
             animate(this.parentNode.parentNode.parentNode);
+
+            let profile_id = $(this).attr('data-profile-id');
+            let route = '../curriculum/' + profile_id + '/archive'
+
+            curriculumStateChanger(route);
+        });
+    });
+
+//curriculum restore
+document.querySelectorAll('.ev-restore')
+    .forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            animate(this.parentNode.parentNode.parentNode);
+
+            let profile_id = $(this).attr('data-profile-id');
+            let route = '../curriculum/' + profile_id + '/restore'
+
+            curriculumStateChanger(route);
         });
     });
 
@@ -30,9 +48,9 @@ document.querySelectorAll('.ev-open-dialog')
 
             showSpinner();
 
-            dialogProfile = $(this).attr('data-profile-id');
+            dialog_profile = $(this).attr('data-profile-id');
 
-            populateDialog(dialogProfile);
+            populateDialog(dialog_profile);
 
 
 
@@ -54,12 +72,12 @@ $('.ev-submit-tag').submit(function (event) {
     showSpinner();
 
     let value = $(this).find('input[name="new-tag"]').val();
-    let route = 'curriculum/' + dialogProfile + '/tag' //monta a rota da requisição
+    let route = 'curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
 
     $.post(route, { tag: value }, function (data, status, xhr) {
         if (status === 'success') {
             $('.ev-submit-tag').find('input[name="new-tag"]').val('');
-            populateDialog(dialogProfile);
+            populateDialog(dialog_profile);
         }
         else {
             console.log(xhr);
@@ -107,7 +125,7 @@ function updateTagBtn(profile_id) {
                 animate(btn.parentNode);
                 $.post(route, { tag: value }, function (data, status, xhr) {
                     if (status === 'success') {
-                        populateDialog(dialogProfile);
+                        populateDialog(dialog_profile);
                     }
                     else {
                         console.log(xhr);
@@ -159,7 +177,7 @@ function animate(element) {
 }
 
 //mostra o spinner no dialog
-function showSpinner(){
+function showSpinner() {
     $('.mdl-dialog__content').html('<div class="flex center"><div class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div></div>'); //mostra o loading
     componentHandler.upgradeElement($('.mdl-js-spinner')[0]); // atualiza o elemento para que o loading funcione
 }
@@ -173,3 +191,15 @@ $(window).on('load', function () {
 $(document).ready(function () {
     $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
 });
+
+//realiza a requisição de mudança de estado
+function curriculumStateChanger(route){
+    $.post(route, {}, function (data, status, xhr) {
+        if (status === 'success') {
+            console.log('State changed');
+        }
+        else {
+            console.log(xhr);
+        }
+    });
+}

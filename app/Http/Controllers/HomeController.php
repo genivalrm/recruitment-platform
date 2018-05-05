@@ -69,11 +69,6 @@ class HomeController extends Controller
 
 		return redirect('/');
 	}
-
-	public function archive($id){
-		$profile = Profile::find(decrypt($id));
-		$profile->archived = true;
-	}
 	
 	private function processAttachment($attachment){
 		if ($attachment->isValid()) {

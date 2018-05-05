@@ -36,7 +36,7 @@ class CurriculumController extends Controller
 		return redirect('curriculum');
 	}
 
-	public function show($id){
+	public function show($id) {
 		$curriculum = Curriculum::find(decrypt($id));
 		$bucket = DB::getMongoDB()->selectGridFSBucket([ 'bucketName' => 'attachment' ]);
 		$stream = $bucket->openDownloadStream(new ObjectId($curriculum->attachment_id));
@@ -93,5 +93,17 @@ class CurriculumController extends Controller
 		}
 		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
 		return view('list-curriculas', ['profiles' => $profiles, 'curriculas' => $curriculas]);
+	}
+
+	public function archive($id){
+		$profile = Profile::find(decrypt($id));
+		$profile->archived = true;
+		$profile->save();
+	}
+
+	public function restore($id){
+		$profile = Profile::find(decrypt($id));
+		$profile->archived = false;
+		$profile->save();
 	}
 }
