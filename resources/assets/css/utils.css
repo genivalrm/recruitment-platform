@@ -76,6 +76,10 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+.pd-tb-8{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
 .pd-lr-64{
     padding-left: 64px;
     padding-right: 64px;

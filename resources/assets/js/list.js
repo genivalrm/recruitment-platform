@@ -11,8 +11,8 @@ $(document).ready(function () {
 });
 
 //dialog
-var dialog = document.querySelector('dialog');
-var dialog_profile = '';
+const dialog = document.querySelector('dialog');
+let dialog_profile = '';
 
 $.ajaxSetup({
     headers: {
@@ -27,8 +27,8 @@ $.ajaxSetup({
 $(document).on('click', '.ev-archive', function () {
     animate(this.parentNode.parentNode.parentNode);
 
-    let profile_id = $(this).attr('data-profile-id');
-    let route = '../curriculum/' + profile_id + '/archive'
+    const profile_id = $(this).attr('data-profile-id');
+    const route = '../curriculum/' + profile_id + '/archive'
 
     curriculumStateChanger(route, 'archived', '.archived-section');
 });
@@ -38,16 +38,17 @@ $(document).on('click', '.ev-restore', function () {
 
     animate(this.parentNode.parentNode.parentNode);
 
-    let profile_id = $(this).attr('data-profile-id');
-    let route = '../curriculum/' + profile_id + '/restore'
+    const profile_id = $(this).attr('data-profile-id');
+    const route = '../curriculum/' + profile_id + '/restore'
 
-    curriculumStateChanger(route, 'notarchived', '.not-archived-section');
+    curriculumStateChanger(route, 'not_archived', '.not-archived-section');
 });
 //dialog open button
 $(document).on('click', '.ev-open-dialog', function (btn) {
-    let content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
+    const content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
+    dialogPolyfill.registerDialog(dialog);
 
-    let modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
+    const modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
     document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
 
     showSpinner();
@@ -74,8 +75,8 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
 
     showSpinner();
 
-    let value = $(this).find('input[name="new-tag"]').val();
-    let route = '../curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
+    const value = $(this).find('input[name="new-tag"]').val();
+    const route = '../curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
 
     $.post(route, { tag: value }, function (data, status, xhr) {
         if (status === 'success') {
@@ -93,7 +94,7 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
 //==========================================================================
 //recupera as tags do perfil e coloca no dialog
 function populateDialog(profile_id) {
-    let route = '../curriculum/' + profile_id + '/tag' //monta a rota da requisição
+    const route = '../curriculum/' + profile_id + '/tag' //monta a rota da requisição
 
     $.get(route, function (data, status) {  //requisita as tags do curriculo
         if (status === 'success') {
@@ -105,7 +106,7 @@ function populateDialog(profile_id) {
     });
 
     function renderData(tags) {
-        let content = $('.mdl-dialog__content');
+        const content = $('.mdl-dialog__content');
         content.empty();
         if (tags.length > 0) {
             tags.forEach(function (tag) {
@@ -120,7 +121,7 @@ function populateDialog(profile_id) {
 }
 //adiciona o listener aos botões de excluir tag
 function updateTagBtn(profile_id) {
-    let route = '../curriculum/' + profile_id + '/tag/delete' //monta a rota da requisição
+    const route = '../curriculum/' + profile_id + '/tag/delete' //monta a rota da requisição
     document.querySelectorAll('.ev-remove-tag')
         .forEach(function (btn) {
             btn.addEventListener('click', function () {
@@ -128,7 +129,8 @@ function updateTagBtn(profile_id) {
                 animate(btn.parentNode);
                 $.post(route, { tag: value }, function (data, status, xhr) {
                     if (status === 'success') {
-                        populateDialog(dialog_profile);
+                        // populateDialog(dialog_profile);
+                        console.log('tag excluded');
                     }
                     else {
                         console.log(xhr);
@@ -142,9 +144,9 @@ function updateTagBtn(profile_id) {
 function initializeRating() {
     //initialize rating selects
     $('.rating').each(function (index, el) {
-        let $El = $(el);
-        let profile_id = $El.attr('data-profile-id');
-        let route = '../curriculum/' + profile_id + '/rating';
+        const $El = $(el);
+        const profile_id = $El.attr('data-profile-id');
+        const route = '../curriculum/' + profile_id + '/rating';
 
         $El.barrating({
             theme: 'fontawesome-stars',
@@ -201,7 +203,7 @@ function curriculumStateChanger(route, nextState, section) {
 }
 //requisita para o back a view com os cards atuais
 function cardSectionUpdater(type, section) {
-    let route = '../curriculum/' + type;
+    const route = '../curriculum/' + type;
 
     $.get(route, function (data, status) {  //requisita as tags do curriculo
         if (status === 'success') {
@@ -214,7 +216,7 @@ function cardSectionUpdater(type, section) {
 }
 //atualiza o html da view e o rating widget
 function renderSection(data, section) {
-    let element = $(section);
+    const element = $(section);
     element.empty();
     element.append(data);
     initializeRating();
