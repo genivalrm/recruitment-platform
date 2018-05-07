@@ -15,8 +15,8 @@
 Route::get('auth/logout', 'LoginController@logout');
 Route::get('auth', 'LoginController@index');
 Route::post('auth', 'LoginController@authenticate');
-Route::get('curriculum/archived', 'CurriculumController@listArchived')->middleware('auth');
-Route::get('curriculum/notarchived', 'CurriculumController@listNotArchived')->middleware('auth');
+//Route::get('curriculum/list/{archived}', 'CurriculumController@list')->middleware('auth');
+//Route::get('curriculum/notarchived', 'CurriculumController@listNotArchived')->middleware('auth');
 Route::post('curriculum/{id}/tag/delete', 'CurriculumController@deleteTag')->middleware('auth');
 Route::post('curriculum/{id}/tag', 'CurriculumController@insertTag')->middleware('auth');
 Route::get('curriculum/{id}/tag', 'CurriculumController@listTag')->middleware('auth');
