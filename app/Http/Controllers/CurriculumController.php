@@ -35,10 +35,10 @@ class CurriculumController extends Controller
 		}
 
 		if ($in->archived){
-			return view('card-section', ['archived' => $archived, 'curriculas' => $curriculas]);
+			return view('card-section', ['profiles' => $archived, 'curriculas' => $curriculas]);
 		}
 		elseif ($in->not_archived){
-			return view('card-section', ['not_archived' => $not_archived, 'curriculas' => $curriculas]);
+			return view('card-section', ['profiles' => $not_archived, 'curriculas' => $curriculas]);
 		}
 		else{
 			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived, 'curriculas' => $curriculas]);	

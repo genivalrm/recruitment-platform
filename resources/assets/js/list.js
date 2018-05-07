@@ -41,7 +41,7 @@ $(document).on('click', '.ev-restore', function () {
     const profile_id = $(this).attr('data-profile-id');
     const route = '../curriculum/' + profile_id + '/restore'
 
-    curriculumStateChanger(route, 'not_archived', '.not-archived-section');
+    curriculumStateChanger(route, 'notarchived', '.not-archived-section');
 });
 //dialog open button
 $(document).on('click', '.ev-open-dialog', function (btn) {
@@ -203,8 +203,11 @@ function curriculumStateChanger(route, nextState, section) {
 }
 //requisita para o back a view com os cards atuais
 function cardSectionUpdater(type, section) {
-    const route = '../curriculum/' + type;
+    let route = '../curriculum?archived=true';
 
+    if(type === 'notarchived') {
+        route = '../curriculum?not_archived=true';
+    }
     $.get(route, function (data, status) {  //requisita as tags do curriculo
         if (status === 'success') {
             renderSection(data, section);

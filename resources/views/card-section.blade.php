@@ -28,13 +28,13 @@
         <!-- <hr class="mg-0 pd-0"> -->
         <div class="mdl-card__supporting-text">
             <ul class="mdl-list pd-tb-0 mg-tb-0">
-                <li class="mdl-list__item">
+                <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
                         <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i>
                         <a href="tel:+55#">{{ $profile->phone }}</a>
                     </span>
                 </li>
-                <li class="mdl-list__item">
+                <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
                         <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i>
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
