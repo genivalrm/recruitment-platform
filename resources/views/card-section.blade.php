@@ -75,7 +75,7 @@
                     </a>
                 </button>
             @endif
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->_id }}">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->id }}">
                 <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
             </button>
             <div class="none ev-search">{{ collect($profile->tag)->implode(' ') }}</div>
