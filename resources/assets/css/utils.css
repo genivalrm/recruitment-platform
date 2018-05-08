@@ -24,6 +24,10 @@
 .block{
     display: block;
 }
+.none{
+    display: none;
+}
+
 .space-between{
     justify-content: space-between;
 }

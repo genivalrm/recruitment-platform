@@ -22,18 +22,18 @@ class CurriculumController extends Controller
 			
 		$curriculum_ids = [];
 		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-			
 		foreach ($archived as $i => $profile) {
-			$profile->curriculum_id = collect($profile->curriculum_id)->last();
+			$profile->id = encrypt($profile->_id);
+			$profile->curriculum_id = encrypt(collect($profile->curriculum_id)->last());
 			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = Office::find((array) $profile->office)->pluck('name');
+			$profile->tag = $this->listTag($profile->id)['tag'];
 		}
 		foreach ($not_archived as $i => $profile) {
+			$profile->id = encrypt($profile->_id);
 			$profile->curriculum_id = collect($profile->curriculum_id)->last();
 			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = Office::find((array) $profile->office)->pluck('name');
+			$profile->tag = $this->listTag($profile->id)['tag'];
 		}
-
 		if ($in->archived){
 			return view('card-section', ['profiles' => $archived, 'curriculas' => $curriculas]);
 		}
@@ -76,7 +76,8 @@ class CurriculumController extends Controller
 	}
 
 	public function listTag($id){
-		$tag = Profile::find(decrypt($id))->tag;
+		$tag = [];
+		$tag = array_merge(Profile::find(decrypt($id))->tag ?: [], Profile::find(decrypt($id))->office ?: []);
 		$tag = Office::find((array) $tag)->pluck('name');
 		return [
 			'tag' => $tag,
@@ -97,32 +98,6 @@ class CurriculumController extends Controller
 		$profile->tag = $profile->pull('tag', $tag);
 	}
 
-	/*public function listArchived(){
-		$profiles = Profile::where('archived', true)->orderBy('created_at')->get();
-		$curriculum_ids = [];
-		foreach ($profiles as $i => $profile) {
-			$profile->curriculum_id = collect($profile->curriculum_id)->last();
-			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = Office::find((array) $profile->office)->pluck('name');
-			// $profile->curriculo = Curriculum::find($curriculum_id);
-			// dump(Curriculum::find($curriculum_id));
-		}
-		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('card-section', ['profiles' => $profiles, 'curriculas' => $curriculas]);
-	}
-	public function listNotArchived(){
-		$profiles = Profile::where('archived', '!=', true)->orderBy('created_at')->get();
-		$curriculum_ids = [];
-		foreach ($profiles as $i => $profile) {
-			$profile->curriculum_id = collect($profile->curriculum_id)->last();
-			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = Office::find((array) $profile->office)->pluck('name');
-			// $profile->curriculo = Curriculum::find($curriculum_id);
-			// dump(Curriculum::find($curriculum_id));
-		}
-		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
-		return view('card-section', ['profiles' => $profiles, 'curriculas' => $curriculas]);
-	}*/
 	public function archive($id){
 		$profile = Profile::find(decrypt($id));
 		$profile->archived = true;
