@@ -1,17 +1,17 @@
 {
     "/js/modal.js": "/js/modal.js?id=78d26de8045dda91f7a1",
     "/js/login.js": "/js/login.js?id=b89ae0f1c93591bf9c05",
-    "/js/list.js": "/js/list.js?id=4c4a3fce9192366f47d7",
+    "/js/list.js": "/js/list.js?id=57980fe8b59223b2b583",
     "/js/insert.js": "/js/insert.js?id=493799376916df1d1d64",
     "/lib/js/jquery.min.js": "/lib/js/jquery.min.js?id=a09e13ee94d51c524b7e",
     "/lib/js/jquery.mask.min.js": "/lib/js/jquery.mask.min.js?id=acb54232967a36f1df1d",
     "/lib/js/jquery.barrating.min.js": "/lib/js/jquery.barrating.min.js?id=203d7ef4eb07becfc48b",
     "/lib/js/dialog-polyfill.js": "/lib/js/dialog-polyfill.js?id=76ed5452c78e1f0fd420",
-    "/css/insert.css": "/css/insert.css?id=50b10b6ba9f31ce71c45",
-    "/css/list.css": "/css/list.css?id=c43f17bbe588d5ccd655",
-    "/css/all.css": "/css/all.css?id=7b26903a37f600c5c892",
-    "/css/utils.css": "/css/utils.css?id=8f6d618c1f9fa1a73e9a",
-    "/css/login.css": "/css/login.css?id=73496b8b7f081ea8a98d",
+    "/css/insert.css": "/css/insert.css?id=2d820dd1f1c61013da19",
+    "/css/list.css": "/css/list.css?id=87b852a5e17d9e9004ce",
+    "/css/all.css": "/css/all.css?id=c919b86ad77d7f74d4e4",
+    "/css/utils.css": "/css/utils.css?id=8f975cd43e47c0724232",
+    "/css/login.css": "/css/login.css?id=3a7865693b90e9191c6e",
     "/lib/css/dialog-polyfill.css": "/lib/css/dialog-polyfill.css?id=25ed5309ec766a20117e",
     "/lib/css/fontawesome-stars.css": "/lib/css/fontawesome-stars.css?id=3617a6a630fc89a80914"
 }

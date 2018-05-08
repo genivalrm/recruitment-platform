@@ -30,13 +30,15 @@
             <ul class="mdl-list pd-tb-0 mg-tb-0">
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">phone</i>
                         <a href="tel:+55#">{{ $profile->phone }}</a>
                     </span>
                 </li>
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">email</i>
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                     </span>
                 </li>
@@ -45,11 +47,13 @@
         <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
             <!-- Colored mini FAB button -->
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->id }}">
-                    <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>                    
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->_id }}">
+                    {{-- <i class="fa fa-undo icon-responsive" aria-hidden="true"></i> --}}
+                    <i class="material-icons icon-responsive">replay</i>                    
             @else
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->id }}">
-                    <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->_id }}">
+                    {{-- <i class="fa fa-archive icon-responsive" aria-hidden="true"></i> --}}
+                    <i class="material-icons icon-responsive">archive</i>
             @endif
                 </button>
         </div>
