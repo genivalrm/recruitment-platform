@@ -1,7 +1,7 @@
 @foreach($profiles as $profile)
 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
     <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
-        <div class="mdl-card__title column pr-48 pb-5">
+        <div class="mdl-card__title column pb-5">
             <h2 class="mdl-card__title-text self-center dont-break-out">{{ $profile->name }}</h2>
             <div class="mdl-card__subtitle-text">
                 @if($profile->internship)
@@ -42,12 +42,13 @@
                 </li>
             </ul>
         </div>
-        <div class="mdl-card__menu">
+        <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-restore" data-profile-id="{{ encrypt($profile->_id) }}">
-                    <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>
+            <!-- Colored mini FAB button -->
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
+                    <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>                    
             @else
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-archive" data-profile-id="{{ encrypt($profile->_id) }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
                     <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
             @endif
                 </button>
