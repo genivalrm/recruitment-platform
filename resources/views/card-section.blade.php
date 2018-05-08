@@ -14,8 +14,8 @@
                     </span>
                 @endif
             </div>
-            <div class="">
-                <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ encrypt($profile->_id) }}">
+            <div class="mt-5">
+                <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->id }}">
                     {{-- <option value=""></option> --}}
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -47,11 +47,11 @@
         <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
             <!-- Colored mini FAB button -->
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->_id }}">
                     {{-- <i class="fa fa-undo icon-responsive" aria-hidden="true"></i> --}}
                     <i class="material-icons icon-responsive">replay</i>                    
             @else
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->_id }}">
                     {{-- <i class="fa fa-archive icon-responsive" aria-hidden="true"></i> --}}
                     <i class="material-icons icon-responsive">archive</i>
             @endif
@@ -61,7 +61,7 @@
         <div class="mdl-card__actions flex space-between">
             <!-- Colored icon button -->
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                <a href="{{ action('CurriculumController@show', encrypt($profile->curriculum_id)) }}" target="_blank">
+                <a href="{{ action('CurriculumController@show', $profile->curriculum_id) }}" target="_blank">
                     <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i>
                 </a>
             </button>
@@ -79,9 +79,10 @@
                     </a>
                 </button>
             @endif
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ encrypt($profile->_id) }}">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->id }}">
                 <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
             </button>
+            <div class="display-none" profile-tag="{{ $profile->tag }}"></div>
         </div>
     </div>
 </div>
