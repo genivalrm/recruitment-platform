@@ -1,7 +1,7 @@
 @foreach($profiles as $profile)
 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
     <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
-        <div class="mdl-card__title column pr-48 pb-5">
+        <div class="mdl-card__title column pb-5">
             <h2 class="mdl-card__title-text self-center dont-break-out">{{ $profile->name }}</h2>
             <div class="mdl-card__subtitle-text">
                 @if($profile->internship)
@@ -14,7 +14,7 @@
                     </span>
                 @endif
             </div>
-            <div class="mt-5">
+            <div class="">
                 <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ encrypt($profile->_id) }}">
                     {{-- <option value=""></option> --}}
                     <option value="1">1</option>
@@ -30,25 +30,30 @@
             <ul class="mdl-list pd-tb-0 mg-tb-0">
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">phone</i>
                         <a href="tel:+55#">{{ $profile->phone }}</a>
                     </span>
                 </li>
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">email</i>
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                     </span>
                 </li>
             </ul>
         </div>
-        <div class="mdl-card__menu">
+        <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-restore" data-profile-id="{{ encrypt($profile->_id) }}">
-                    <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>
+            <!-- Colored mini FAB button -->
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
+                    {{-- <i class="fa fa-undo icon-responsive" aria-hidden="true"></i> --}}
+                    <i class="material-icons icon-responsive">replay</i>                    
             @else
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ev-archive" data-profile-id="{{ encrypt($profile->_id) }}">
-                    <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ encrypt($profile->_id) }}">
+                    {{-- <i class="fa fa-archive icon-responsive" aria-hidden="true"></i> --}}
+                    <i class="material-icons icon-responsive">archive</i>
             @endif
                 </button>
         </div>

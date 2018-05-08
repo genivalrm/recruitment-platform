@@ -59,11 +59,20 @@
 .pt-15{
     padding-top: 15px;
 }
+.pt-16{
+    padding-top: 16px;
+}
 .pl-48{
     padding-left: 48px;
 }
+.pl-16{
+    padding-left: 16px;
+}
 .pr-48{
     padding-right: 48px;
+}
+.pr-8{
+    padding-right: 8px;
 }
 .pl-0{
     padding-left: 0;
@@ -103,10 +112,29 @@
 .font-12{
     font-size: 12px;
 }
+
+/* colors */
 .color-red{
     color: #de3226;
 }
-
+.color-light-grey{
+    color: #757575;
+}
+.color-white{
+    color: white;
+}
+.bg-grey{
+    background-color: #E0E0E0;
+}
+.bg-grey:hover{
+    background-color: #BDBDBD;
+}
+.bg-light-blue{
+    background-color: #BBDEFB;
+}
+.bg-light-blue:hover{
+    background-color: #90CAF9;
+}
 /* margins */
 .ml-48{
     margin-left: 48px;
@@ -119,6 +147,9 @@
 }
 .ml-4{
     margin-left: 4px;
+}
+.ml-auto{
+    margin-left: auto;
 }
 .mr-32{
     margin-right: 32px;
@@ -156,6 +187,8 @@
     margin: 0;
 }
 
-
-
+/* position */
+.pos-t-33{
+    top: 33.33%;
+}
 

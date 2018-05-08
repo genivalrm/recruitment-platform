@@ -17,11 +17,12 @@ a{
  .mdl-layout__tab{
     color: rgba(255, 255, 255, 0.6);
  }
-.mdl-layout__drawer{
+/* .mdl-layout__drawer{
     background-color: #315199;
     border-right-color: #315199;
 
-}
+} */
+
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
     color: white;
 }
@@ -38,6 +39,7 @@ a{
     border-bottom-color: white;
     color: white;
 }
+
 .mdl-card__title, .mdl-card__actions{
     background-color: #EFEBE9;
 }
@@ -45,11 +47,13 @@ a{
     color: #757575;
 }
 .mdl-layout__drawer-button i{
-    /* font: normal normal normal 24px/1 FontAwesome !important; */
-    content: "\f0c9" !important;
+    content: "filter_list" !important;
 }
 
-
+.br-widget{
+    display: flex;
+    align-items: center;
+}
 
 
 /* personalization */
@@ -135,22 +139,22 @@ a{
     cursor: pointer;
     color: #edae01;
 }
-.font-white{
-    color: white !important;
-}
-
 
 @media (max-width: 1366px) {
   .icon-responsive {
     font-size: 20px;
-   }
+  }
 }
 
 @media (max-width: 472px) {
     .mdl-dialog {
       max-width: 90%;
-     }
+    }
     .ev-submit-tag{
          width: 100%;
-     }
+    }
+    
+    .mdl-textfield.is-focused .mdl-textfield__expandable-holder, .mdl-textfield.is-dirty .mdl-textfield__expandable-holder {
+        max-width: 100px;
+    }
   }
