@@ -59,7 +59,7 @@ function populateDialog(profile_id) {
 
     $.get(route, function (data, status) {  //requisita as tags do curriculo
         if (status === 'success') {
-            renderData(data.tag)
+            renderData(data.tag);
         }
         else {
             console.log(status);
@@ -67,14 +67,29 @@ function populateDialog(profile_id) {
     });
 }
 
+function ratingFilter(value) {
+   let elements = [];
+   $('select.rating').not('.ev-filter-rating').each(function (index, el){
+       if($(el).data('current-rating') == value){
+           elements.push($(el).parents('.mdl-cell'));
+       }
+   });
 
+   $('.mdl-cell').fadeIn();
+   
+    elements.forEach(function(element){
+        $(element).fadeOut();
+    });
+
+    
+}
 
 function initializeRating() {
     //initialize rating selects
     $('.rating').each(function (index, el) {
         const $El = $(el);
         const profile_id = $El.attr('data-profile-id');
-        const route = '../curriculum/' + profile_id + '/rating';
+        let route = '../curriculum/' + profile_id + '/rating';
 
         $El.barrating({
             theme: 'fontawesome-stars',
@@ -87,14 +102,20 @@ function initializeRating() {
                     if (!value)
                         value = 0;
 
-                    $.post(route, { star: value }, function (data, status, xhr) {
-                        if (status === 'success') {
-                            console.log('rating updated: ' + value);
-                        }
-                        else {
-                            console.log(xhr);
-                        }
-                    });
+                    if ($El.hasClass('ev-filter-rating')) {
+                        ratingFilter(value);
+                    }
+                    else {
+                        $.post(route, { star: value }, function (data, status, xhr) {
+                            if (status === 'success') {
+                                console.log('rating updated: ' + value);
+                                $El.attr('data-current-rating', value);
+                            }
+                            else {
+                                console.log(xhr);
+                            }
+                        });
+                    }
                 } else {
                     // rating was selected programmatically
                     // by calling `set` method
@@ -122,7 +143,7 @@ function renderSection(data, section) {
 function cardSectionUpdater(type, section) {
     let route = '../curriculum?archived=true';
 
-    if(type === 'notarchived') {
+    if (type === 'notarchived') {
         route = '../curriculum?not_archived=true';
     }
     $.get(route, function (data, status) {  //requisita as tags do curriculo
@@ -154,14 +175,15 @@ function curriculumStateChanger(route, nextState, section) {
 $(window).on('load', function () {
     //to make required fields not red
     $('input[data-required=true]').attr("required", "");
+
+    //to replace mdl-drawer sandwiche icon
+    $(".mdl-layout__drawer-button").html('<i class="material-icons color-white icon-responsive">filter_list</i>');
+
     //rating widget
     initializeRating();
 });
 
-//to replace mdl-drawer sandwiche icon
-$(document).ready(function () {
-    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
-});
+
 
 //curriculum archiving
 $(document).on('click', '.ev-archive', function () {
@@ -229,3 +251,24 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
     });
 });
 
+$(document).on('click', '.ev-internship-filter', function () {
+    if ($(this).prop('checked')) {
+        $('.chip-estagio').parents('.mdl-cell').fadeIn();
+    }
+    else {
+        $('.chip-estagio').parents('.mdl-cell').fadeOut();
+    }
+
+    console.log('Estágio: ' + $(this).prop('checked'));
+});
+
+$(document).on('click', '.ev-contract-filter', function () {
+    if ($(this).prop('checked')) {
+        $('.chip-contrato').parents('.mdl-cell').fadeIn();
+    }
+    else {
+        $('.chip-contrato').parents('.mdl-cell').fadeOut();
+    }
+
+    console.log('Contrato: ' + $(this).prop('checked'));
+});

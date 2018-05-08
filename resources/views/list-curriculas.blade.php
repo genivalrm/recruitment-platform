@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="{{ mix('css/list.css') }}">
 
     </head>
-
+    
     <body>
             <!-- Simple header with scrollable tabs. -->
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -48,7 +48,8 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                                 mdl-textfield--floating-label mdl-textfield--align-right text-field-pd-0">
                             <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
-                                <i class="fa fa-search icon-responsive font-white" aria-hidden="true"></i>
+                                <i class="material-icons icon-responsive color-white">search</i>
+                                {{-- <i class="fa fa-search icon-responsive color-white" aria-hidden="true"></i> --}}
                             </label>
                             <div class="mdl-textfield__expandable-holder">
                                 <input class="mdl-textfield__input" type="search" name="name" id="nav-search">
@@ -58,7 +59,8 @@
                     <!-- Icon button -->
                     <button class="mdl-button mdl-js-button mdl-button--icon ml-26 mb-4">
                         <a href="{{ action('LoginController@logout') }}">
-                            <i class="fa fa-sign-out icon-responsive font-white" aria-hidden="true"></i>
+                            {{-- <i class="fa fa-sign-out icon-responsive color-white" aria-hidden="true"></i> --}}
+                            <i class="material-icons icon-responsive color-white">exit_to_app</i>
                         </a>
                     </button>
                 </div>
@@ -68,8 +70,47 @@
                     <a href="#scroll-tab-2" class="mdl-layout__tab">Arquivados</a>
                 </div>
             </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Filtros</span>
+                <ul class="demo-list-control mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            Estágio
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pr-8">
+                                <input type="checkbox" class="mdl-switch__input ev-internship-filter" checked />
+                            </label>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            Contrato
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pr-8">
+                                <input type="checkbox" class="mdl-switch__input ev-contract-filter" checked />
+                            </label>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content flex space-between">
+                            <spam>Avaliação</spam>
+                      
+                            <select class="rating ev-filter-rating" data-current-rating="0">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            
+                        </span>
+                    </li>
+                </ul>
+            </div>
             <main class="mdl-layout__content">
-            @include('curriculas')
+                @include('curriculas')
             </main>
         </div>
         <dialog class="mdl-dialog">
