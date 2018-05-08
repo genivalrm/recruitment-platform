@@ -1,7 +1,7 @@
 <?php namespace App;
 
 class Profile extends \Moloquent {
-	public $fillable = ['name', 'email', 'phone', 'internship', 'tag', 'star'];
+	public $fillable = ['name', 'email', 'phone', 'internship', 'tag[]', 'star'];
 
 	public function setEmailAtributte($value)
 	{
@@ -11,4 +11,9 @@ class Profile extends \Moloquent {
 	public function curriculum(){
 		return $this->hasMany('App\Curriculum');
 	}
+
+	public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
 }

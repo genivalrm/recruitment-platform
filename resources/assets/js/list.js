@@ -70,15 +70,15 @@ function populateDialog(profile_id) {
 function ratingFilter(value) {
    let elements = [];
    $('select.rating').not('.ev-filter-rating').each(function (index, el){
-       if($(el).data('current-rating') == value){
+       if($(el).data('current-rating') != value){
            elements.push($(el).parents('.mdl-cell'));
        }
    });
 
-   $('.mdl-cell').fadeIn();
+   $('.mdl-cell').show();
    
     elements.forEach(function(element){
-        $(element).fadeOut();
+        $(element).hide();
     });
 
     
@@ -271,4 +271,9 @@ $(document).on('click', '.ev-contract-filter', function () {
     }
 
     console.log('Contrato: ' + $(this).prop('checked'));
+});
+
+$('.ev-reset-filter').on('click', function(){
+    $('.mdl-cell').show();
+    $('select.ev-filter-rating').barrating('clear');
 });

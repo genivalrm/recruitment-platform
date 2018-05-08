@@ -43,7 +43,7 @@
                         </a>
                     </span>
                     <div class="mdl-layout-spacer"></div>
-                    <form action="{{ action('CurriculumController@index') }}" method="GET" autocomplete="off">
+                    <form action="{{ action('CurriculumController@index') }}" method="GET" autocomplete="off" class="typeahead" role="search">
                         @csrf
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                                 mdl-textfield--floating-label mdl-textfield--align-right text-field-pd-0">
@@ -52,7 +52,7 @@
                                 {{-- <i class="fa fa-search icon-responsive color-white" aria-hidden="true"></i> --}}
                             </label>
                             <div class="mdl-textfield__expandable-holder">
-                                <input class="mdl-textfield__input" type="search" name="name" id="nav-search">
+                                <input class="mdl-textfield__input" type="search" name="name" id="nav-search" placeholder="Search" autocomplete="off">
                             </div>
                         </div>
                     </form>
@@ -106,6 +106,11 @@
                             </select>
                             
                         </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect ev-reset-filter">
+                            Reset
+                        </button>
                     </li>
                 </ul>
             </div>
