@@ -103,10 +103,26 @@
 .font-12{
     font-size: 12px;
 }
+
+/* colors */
 .color-red{
     color: #de3226;
 }
-
+.color-light-grey{
+    color: #757575;
+}
+.bg-grey{
+    background-color: #E0E0E0;
+}
+.bg-grey:hover{
+    background-color: #BDBDBD;
+}
+.bg-light-blue{
+    background-color: #BBDEFB;
+}
+.bg-light-blue:hover{
+    background-color: #90CAF9;
+}
 /* margins */
 .ml-48{
     margin-left: 48px;
@@ -156,6 +172,8 @@
     margin: 0;
 }
 
-
-
+/* position */
+.pos-t-33{
+    top: 33.33%;
+}
 
