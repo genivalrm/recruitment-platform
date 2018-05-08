@@ -68,9 +68,21 @@
 /***/ "./resources/assets/js/list.js":
 /***/ (function(module, exports) {
 
+$(window).on('load', function () {
+    //to make required fields not red
+    $('input[data-required=true]').attr("required", "");
+    //rating widget
+    initializeRating();
+});
+
+//to replace mdl-drawer sandwiche icon
+$(document).ready(function () {
+    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
+});
+
 //dialog
 var dialog = document.querySelector('dialog');
-var dialogProfile = '';
+var dialog_profile = '';
 
 $.ajaxSetup({
     headers: {
@@ -81,49 +93,60 @@ $.ajaxSetup({
 //=====================================================
 // EVENTOS
 //=====================================================
-//animation to curriculum archiving
-document.querySelectorAll('.ev-archive').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        animate(this.parentNode.parentNode.parentNode);
-    });
+//curriculum archiving
+$(document).on('click', '.ev-archive', function () {
+    animate(this.parentNode.parentNode.parentNode);
+
+    var profile_id = $(this).attr('data-profile-id');
+    var route = '../curriculum/' + profile_id + '/archive';
+
+    curriculumStateChanger(route, 'archived', '.archived-section');
 });
 
+//curriculum restore
+$(document).on('click', '.ev-restore', function () {
+
+    animate(this.parentNode.parentNode.parentNode);
+
+    var profile_id = $(this).attr('data-profile-id');
+    var route = '../curriculum/' + profile_id + '/restore';
+
+    curriculumStateChanger(route, 'notarchived', '.not-archived-section');
+});
 //dialog open button
-document.querySelectorAll('.ev-open-dialog').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        var content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
+$(document).on('click', '.ev-open-dialog', function (btn) {
+    var content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
 
-        var modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
-        document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
+    var modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
+    document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
 
-        showSpinner();
+    showSpinner();
 
-        dialogProfile = $(this).attr('data-profile-id');
+    dialog_profile = $(this).attr('data-profile-id');
 
-        populateDialog(dialogProfile);
+    populateDialog(dialog_profile);
 
-        dialog.showModal();
-    });
+    dialog.showModal();
 });
 
 //dialog close button
-dialog.querySelector('.ev-close-dialog').addEventListener('click', function () {
+$(document).on('click', '.ev-close-dialog', function () {
     dialog.close();
 });
 
 //ação de enviar uma nova tag
-$('.ev-submit-tag').submit(function (event) {
+$(document).on('submit', '.ev-submit-tag', function (event) {
     event.preventDefault();
 
     showSpinner();
 
     var value = $(this).find('input[name="new-tag"]').val();
-    var route = 'curriculum/' + dialogProfile + '/tag'; //monta a rota da requisição
+    var route = '../curriculum/' + dialog_profile + '/tag'; //monta a rota da requisição
 
     $.post(route, { tag: value }, function (data, status, xhr) {
         if (status === 'success') {
             $('.ev-submit-tag').find('input[name="new-tag"]').val('');
-            populateDialog(dialogProfile);
+            populateDialog(dialog_profile);
         } else {
             console.log(xhr);
         }
@@ -135,14 +158,14 @@ $('.ev-submit-tag').submit(function (event) {
 //==========================================================================
 //recupera as tags do perfil e coloca no dialog
 function populateDialog(profile_id) {
-    var route = 'curriculum/' + profile_id + '/tag'; //monta a rota da requisição
+    var route = '../curriculum/' + profile_id + '/tag'; //monta a rota da requisição
 
     $.get(route, function (data, status) {
         //requisita as tags do curriculo
         if (status === 'success') {
             renderData(data.tag);
         } else {
-            console.loge(status);
+            console.log(status);
         }
     });
 
@@ -161,14 +184,14 @@ function populateDialog(profile_id) {
 }
 //adiciona o listener aos botões de excluir tag
 function updateTagBtn(profile_id) {
-    var route = 'curriculum/' + profile_id + '/tag/delete'; //monta a rota da requisição
+    var route = '../curriculum/' + profile_id + '/tag/delete'; //monta a rota da requisição
     document.querySelectorAll('.ev-remove-tag').forEach(function (btn) {
         btn.addEventListener('click', function () {
             var value = btn.previousSibling.innerHTML;
             animate(btn.parentNode);
             $.post(route, { tag: value }, function (data, status, xhr) {
                 if (status === 'success') {
-                    populateDialog(dialogProfile);
+                    populateDialog(dialog_profile);
                 } else {
                     console.log(xhr);
                 }
@@ -177,37 +200,38 @@ function updateTagBtn(profile_id) {
     });
 }
 
-//initialize rating selects
-$('.rating').each(function (index, el) {
-    var $El = $(el);
-    var profile_id = $El.attr('data-profile-id');
-    var route = '/curriculum/' + profile_id + '/rating';
+function initializeRating() {
+    //initialize rating selects
+    $('.rating').each(function (index, el) {
+        var $El = $(el);
+        var profile_id = $El.attr('data-profile-id');
+        var route = '../curriculum/' + profile_id + '/rating';
 
-    $El.barrating({
-        theme: 'fontawesome-stars',
-        initialRating: $El.attr('data-current-rating'),
-        showSelectedRating: false,
-        allowEmpty: true,
-        onSelect: function onSelect(value, text, event) {
-            if (typeof event !== 'undefined') {
-                // rating was selected by a user
-                if (!value) value = 0;
+        $El.barrating({
+            theme: 'fontawesome-stars',
+            initialRating: $El.attr('data-current-rating'),
+            showSelectedRating: false,
+            allowEmpty: true,
+            onSelect: function onSelect(value, text, event) {
+                if (typeof event !== 'undefined') {
+                    // rating was selected by a user
+                    if (!value) value = 0;
 
-                $.post(route, { star: value }, function (data, status, xhr) {
-                    if (status === "success") {
-                        populateDialog(profile_id);
-                    } else {
-                        console.log(xhr);
-                    }
-                });
-            } else {
-                // rating was selected programmatically
-                // by calling `set` method
+                    $.post(route, { star: value }, function (data, status, xhr) {
+                        if (status === 'success') {
+                            console.log('rating updated: ' + value);
+                        } else {
+                            console.log(xhr);
+                        }
+                    });
+                } else {
+                    // rating was selected programmatically
+                    // by calling `set` method
+                }
             }
-        }
+        });
     });
-});
-
+}
 //anima o elemento com um fade-out
 function animate(element) {
     element.classList.add('removed-item');
@@ -216,21 +240,43 @@ function animate(element) {
     }, 450);
 }
 
+//mostra o spinner no dialog
 function showSpinner() {
     $('.mdl-dialog__content').html('<div class="flex center"><div class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div></div>'); //mostra o loading
     componentHandler.upgradeElement($('.mdl-js-spinner')[0]); // atualiza o elemento para que o loading funcione
 }
 
-//to make required fields not red
-$(window).on('load', function () {
-    $('input[data-required=true]').attr("required", "");
-});
+//realiza a requisição de mudança de estado
+function curriculumStateChanger(route, nextState, section) {
+    $.post(route, {}, function (data, status, xhr) {
+        if (status === 'success') {
+            console.log('State changed');
+            cardSectionUpdater(nextState, section);
+        } else {
+            console.log(xhr);
+        }
+    });
+}
+//requisita para o back a view com os cards atuais
+function cardSectionUpdater(type, section) {
+    var route = '../curriculum/' + type;
 
-// $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
-$(document).ready(function () {
-    //to replace mdl-drawer sandwiche icon
-    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
-});
+    $.get(route, function (data, status) {
+        //requisita as tags do curriculo
+        if (status === 'success') {
+            renderSection(data, section);
+        } else {
+            console.log(status);
+        }
+    });
+}
+//atualiza o html da view e o rating widget
+function renderSection(data, section) {
+    var element = $(section);
+    element.empty();
+    element.append(data);
+    initializeRating();
+}
 
 /***/ }),
 
