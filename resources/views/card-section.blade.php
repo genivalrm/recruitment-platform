@@ -1,8 +1,8 @@
 @foreach($profiles as $profile)
-<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone ev-search-card">
     <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
         <div class="mdl-card__title column pb-5">
-            <h2 class="mdl-card__title-text self-center dont-break-out">{{ $profile->name }}</h2>
+            <h2 class="mdl-card__title-text self-center dont-break-out ev-search-text">{{ $profile->name }}</h2>
             <div class="mdl-card__subtitle-text">
                 @if($profile->internship)
                     <span class="mdl-chip chip-estagio">
@@ -81,7 +81,7 @@
                 <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
             </button>
 
-            <div class="none ev-search">{{ collect($profile->tag)->implode(' ') }}</div>
+            <div class="none ev-search-text">{{ collect($profile->tag)->implode(' ') }}</div>
 
         </div>
     </div>
