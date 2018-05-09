@@ -30,7 +30,9 @@ class CurriculumController extends Controller
 		}
 		foreach ($not_archived as $i => $profile) {
 			$profile->id = encrypt($profile->_id);
-			$profile->curriculum_id = collect($profile->curriculum_id)->last();
+
+			$profile->curriculum_id = encrypt(collect($profile->curriculum_id)->last());
+
 			$curriculum_ids[] = $profile->curriculum_id;
 			$profile->tag = $this->listTag($profile->id)['tag'];
 		}
