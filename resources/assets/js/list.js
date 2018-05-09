@@ -88,7 +88,7 @@ function populateDialog(profile_id) {
 function ratingFilter(value) {
     let elements = [];
     $('select.rating').not('.ev-filter-rating').each(function (index, el) {
-        if ($(el).data('current-rating') < value) {
+        if ($(el).attr('data-current-rating') < value) {
             elements.push($(el).parents('.mdl-cell'));
         }
     });
@@ -206,7 +206,7 @@ function selectBondElements(bondClass) {
     el.each(function () {
 
         if ($(this).parent()
-            .siblings('div.rating-div').children('div.br-wrapper').children('select.rating').data('current-rating') >= currentRating) {
+            .siblings('div.rating-div').children('div.br-wrapper').children('select.rating').attr('data-current-rating') >= currentRating) {
             elements.push($(this));
         }
 
