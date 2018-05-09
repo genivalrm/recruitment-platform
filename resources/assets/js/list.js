@@ -20,74 +20,6 @@ $.ajaxSetup({
     }
 });
 
-//=====================================================
-// EVENTOS
-//=====================================================
-//curriculum archiving
-$(document).on('click', '.ev-archive', function () {
-    animate(this.parentNode.parentNode.parentNode);
-
-    let profile_id = $(this).attr('data-profile-id');
-    let route = '../curriculum/' + profile_id + '/archive'
-
-    curriculumStateChanger(route, 'archived', '.archived-section');
-});
-
-//curriculum restore
-$(document).on('click', '.ev-restore', function () {
-
-    animate(this.parentNode.parentNode.parentNode);
-
-    let profile_id = $(this).attr('data-profile-id');
-    let route = '../curriculum/' + profile_id + '/restore'
-
-    curriculumStateChanger(route, 'notarchived', '.not-archived-section');
-});
-//dialog open button
-$(document).on('click', '.ev-open-dialog', function (btn) {
-    let content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
-
-    let modalTitle = this.parentNode.parentNode.childNodes[1].childNodes[1].innerHTML + ' - TAGS'; //pega o nome do curriculo
-    document.querySelector('.mdl-dialog__title').innerHTML = modalTitle; //coloca o nome capturado no modal
-
-    showSpinner();
-
-    dialog_profile = $(this).attr('data-profile-id');
-
-    populateDialog(dialog_profile);
-
-
-
-    dialog.showModal();
-});
-
-//dialog close button
-$(document).on('click', '.ev-close-dialog', function () {
-    dialog.close();
-});
-
-
-
-//ação de enviar uma nova tag
-$(document).on('submit', '.ev-submit-tag', function (event) {
-    event.preventDefault();
-
-    showSpinner();
-
-    let value = $(this).find('input[name="new-tag"]').val();
-    let route = '../curriculum/' + dialog_profile + '/tag' //monta a rota da requisição
-
-    $.post(route, { tag: value }, function (data, status, xhr) {
-        if (status === 'success') {
-            $('.ev-submit-tag').find('input[name="new-tag"]').val('');
-            populateDialog(dialog_profile);
-        }
-        else {
-            console.log(xhr);
-        }
-    });
-});
-
 //==========================================================================
 // FUNÇÕES AUXILIARES
 //==========================================================================
@@ -242,6 +174,7 @@ function renderSection(data, section) {
     element.empty();
     element.append(data);
     initializeRating();
+    verifyBondFilter();
 }
 
 //requisita para o back a view com os cards atuais
@@ -273,7 +206,42 @@ function curriculumStateChanger(route, nextState, section) {
         }
     });
 }
+//bond filters 
+function updateBondFilter(type, state){
+    switch(type){
+        case 'contract':
+            if(state){
+                $('.chip-contrato').parents('.mdl-cell').show();
+            }
+            else{
+                $('.chip-contrato').parents('.mdl-cell').hide();
+            }
+            break;
+        case 'internship':
+            if(state){
+                $('.chip-estagio').parents('.mdl-cell').show();
+            }
+            else {
+                $('.chip-estagio').parents('.mdl-cell').hide();
+            }
+            break;
+    }
+}
+function verifyBondFilter(){
+    if($('.ev-contract-filter').prop('checked')){
+        updateBondFilter('contract', true);
+    }
+    else {
+        updateBondFilter('contract', false);
+    }
 
+    if ($('.ev-internship-filter').prop('checked')) {
+        updateBondFilter('internship', true); 
+    }
+    else{
+        updateBondFilter('internship', false);
+    }
+}
 //=====================================================
 // EVENTOS
 //=====================================================
@@ -287,8 +255,6 @@ $(window).on('load', function () {
     //rating widget
     initializeRating();
 });
-
-
 
 //curriculum archiving
 $(document).on('click', '.ev-archive', function () {
@@ -310,6 +276,7 @@ $(document).on('click', '.ev-restore', function () {
 
     curriculumStateChanger(route, 'notarchived', '.not-archived-section');
 });
+
 //dialog open button
 $(document).on('click', '.ev-open-dialog', function (btn) {
     const content = $('.mdl-dialog__content'); //seleciona a div de conteudo do modal
@@ -356,28 +323,16 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
 });
 
 $(document).on('click', '.ev-internship-filter', function () {
-    if ($(this).prop('checked')) {
-        $('.chip-estagio').parents('.mdl-cell').fadeIn();
-    }
-    else {
-        $('.chip-estagio').parents('.mdl-cell').fadeOut();
-    }
-
-    console.log('Estágio: ' + $(this).prop('checked'));
+    verifyBondFilter();
 });
 
 $(document).on('click', '.ev-contract-filter', function () {
-    if ($(this).prop('checked')) {
-        $('.chip-contrato').parents('.mdl-cell').fadeIn();
-    }
-    else {
-        $('.chip-contrato').parents('.mdl-cell').fadeOut();
-    }
-
-    console.log('Contrato: ' + $(this).prop('checked'));
+    verifyBondFilter();
 });
 
 $('.ev-reset-filter').on('click', function(){
     $('.mdl-cell').show();
     $('select.ev-filter-rating').barrating('clear');
+    $('.ev-contract-filter').parents('.mdl-switch').addClass('is-checked');
+    $('.ev-internship-filter').parents('.mdl-switch').addClass('is-checked');
 });
