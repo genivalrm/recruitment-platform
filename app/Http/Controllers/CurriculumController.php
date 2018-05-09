@@ -13,11 +13,11 @@ class CurriculumController extends Controller
 	public function index(Request $in){
 		$archived = $not_archived = [];
 		if ( !$in->not_archived ) {
-			$archived = Profile::where('archived', true)->orderBy('created_at')->get();
+			$archived = Profile::where('archived', true)->orderBy('star', 'desc')->get();
 
 		}
 		if ( !$in->archived ) {
-			$not_archived = Profile::where('archived', '!=', true)->orderBy('created_at')->get();
+			$not_archived = Profile::where('archived', '!=', true)->orderBy('star', 'desc')->get();
 		}
 			
 		$curriculum_ids = [];
