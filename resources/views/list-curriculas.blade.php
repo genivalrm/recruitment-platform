@@ -72,7 +72,7 @@
             </header>
             <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title">Filtros</span>
-                <ul class="demo-list-control mdl-list">
+                <ul class="demo-list-control mdl-list flex column">
                     <li class="mdl-list__item">
                         <span class="mdl-list__item-primary-content">
                             Estágio
@@ -95,7 +95,7 @@
                     </li>
                     <li class="mdl-list__item">
                         <span class="mdl-list__item-primary-content flex space-between">
-                            <spam>Avaliação</spam>
+                            <spam>Avaliação mínima</spam>
                       
                             <select class="rating ev-filter-rating" data-current-rating="0">
                                 <option value="1">1</option>
@@ -107,8 +107,8 @@
                             
                         </span>
                     </li>
-                    <li class="mdl-list__item">
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect ev-reset-filter">
+                    <li class="mdl-list__item self-end">
+                        <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect ev-reset-filter">
                             Reset
                         </button>
                     </li>

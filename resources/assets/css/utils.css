@@ -8,6 +8,9 @@
 .self-center{
     align-self: center;
 }
+.self-end{
+    align-self: flex-end;
+}
 .row{
     flex-direction: row;
 }
@@ -134,10 +137,10 @@
     background-color: #BDBDBD;
 }
 .bg-light-blue{
-    background-color: #BBDEFB;
+    background-color: #a8cae6;
 }
 .bg-light-blue:hover{
-    background-color: #90CAF9;
+    background-color: #78acd6;
 }
 /* margins */
 .ml-48{
