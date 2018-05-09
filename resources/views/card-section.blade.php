@@ -14,7 +14,7 @@
                     </span>
                 @endif
             </div>
-            <div class="mt-5">
+            <div class="mt-5 rating-div">
                 <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->id }}">
                     {{-- <option value=""></option> --}}
                     <option value="1">1</option>
@@ -48,10 +48,10 @@
             @if($profile->archived)
             <!-- Colored mini FAB button -->
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->id }}">
-                    <i class="fa fa-undo icon-responsive" aria-hidden="true"></i>                    
+                    <i class="material-icons icon-responsive">unarchive</i>                   
             @else
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->id }}">
-                    <i class="fa fa-archive icon-responsive" aria-hidden="true"></i>
+                    <i class="material-icons icon-responsive">archive</i> 
             @endif
                 </button>
         </div>

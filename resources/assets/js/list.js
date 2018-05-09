@@ -1,15 +1,3 @@
-$(window).on('load', function () {
-    //to make required fields not red
-    $('input[data-required=true]').attr("required", "");
-    //rating widget
-    initializeRating();
-});
-
-//to replace mdl-drawer sandwiche icon
-$(document).ready(function () {
-    $(".mdl-layout__drawer-button").html('<i class="fa fa-bars" aria-hidden="true"></i>');
-});
-
 //dialog
 var dialog = document.querySelector('dialog');
 var dialog_profile = '';
@@ -98,20 +86,21 @@ function populateDialog(profile_id) {
 }
 
 function ratingFilter(value) {
-   let elements = [];
-   $('select.rating').not('.ev-filter-rating').each(function (index, el){
-       if($(el).data('current-rating') != value){
-           elements.push($(el).parents('.mdl-cell'));
-       }
-   });
+    let elements = [];
+    $('select.rating').not('.ev-filter-rating').each(function (index, el) {
+        if ($(el).data('current-rating') < value) {
+            elements.push($(el).parents('.mdl-cell'));
+        }
+    });
 
-   $('.mdl-cell').show();
-   
-    elements.forEach(function(element){
+    $('.mdl-cell').show();
+
+    verifyBondFilter();
+
+    elements.forEach(function (element) {
         $(element).hide();
     });
 
-    
 }
 
 function initializeRating() {
@@ -133,6 +122,7 @@ function initializeRating() {
                         value = 0;
 
                     if ($El.hasClass('ev-filter-rating')) {
+                        $El.attr('data-current-rating', value);
                         ratingFilter(value);
                     }
                     else {
@@ -206,40 +196,89 @@ function curriculumStateChanger(route, nextState, section) {
         }
     });
 }
+function selectBondElements(bondClass) {
+    const currentRating = $('.ev-filter-rating').attr('data-current-rating');
+    console.log(currentRating);
+    let elements = [];
+
+    const el = $(bondClass);
+
+    el.each(function () {
+
+        if ($(this).parent()
+            .siblings('div.rating-div').children('div.br-wrapper').children('select.rating').data('current-rating') >= currentRating) {
+            elements.push($(this));
+        }
+
+    });
+
+    return elements;
+}
 //bond filters 
-function updateBondFilter(type, state){
-    switch(type){
+function updateBondFilter(type, state) {
+    let elements = [];
+    switch (type) {
         case 'contract':
-            if(state){
-                $('.chip-contrato').parents('.mdl-cell').show();
+            if (state) {
+                elements = selectBondElements('.chip-contrato');
+                elements.forEach(function (el) {
+                    el.parents('.mdl-cell').show();
+                });
             }
-            else{
-                $('.chip-contrato').parents('.mdl-cell').hide();
+            else {
+                elements = selectBondElements('.chip-contrato');
+                elements.forEach(function (el) {
+                    el.parents('.mdl-cell').hide();
+                });
             }
             break;
         case 'internship':
-            if(state){
-                $('.chip-estagio').parents('.mdl-cell').show();
+            if (state) {
+                elements = selectBondElements('.chip-estagio');
+                elements.forEach(function (el) {
+                    el.parents('.mdl-cell').show();
+                });
             }
             else {
-                $('.chip-estagio').parents('.mdl-cell').hide();
+                elements = selectBondElements('.chip-estagio');
+                elements.forEach(function (el) {
+                    el.parents('.mdl-cell').hide();
+                });
             }
             break;
     }
 }
-function verifyBondFilter(){
-    if($('.ev-contract-filter').prop('checked')){
-        updateBondFilter('contract', true);
+function verifyBondFilter(bondFilter) {
+    if (bondFilter === 'contract') {
+        if ($('.ev-contract-filter').prop('checked')) {
+            updateBondFilter('contract', true);
+        }
+        else {
+            updateBondFilter('contract', false);
+        }
+    }
+    else if (bondFilter === 'internship') {
+        if ($('.ev-internship-filter').prop('checked')) {
+            updateBondFilter('internship', true);
+        }
+        else {
+            updateBondFilter('internship', false);
+        }
     }
     else {
-        updateBondFilter('contract', false);
-    }
+        if ($('.ev-contract-filter').prop('checked')) {
+            updateBondFilter('contract', true);
+        }
+        else {
+            updateBondFilter('contract', false);
+        }
 
-    if ($('.ev-internship-filter').prop('checked')) {
-        updateBondFilter('internship', true); 
-    }
-    else{
-        updateBondFilter('internship', false);
+        if ($('.ev-internship-filter').prop('checked')) {
+            updateBondFilter('internship', true);
+        }
+        else {
+            updateBondFilter('internship', false);
+        }
     }
 }
 //=====================================================
@@ -323,14 +362,14 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
 });
 
 $(document).on('click', '.ev-internship-filter', function () {
-    verifyBondFilter();
+    verifyBondFilter('internship');
 });
 
 $(document).on('click', '.ev-contract-filter', function () {
-    verifyBondFilter();
+    verifyBondFilter('contract');
 });
 
-$('.ev-reset-filter').on('click', function(){
+$('.ev-reset-filter').on('click', function () {
     $('.mdl-cell').show();
     $('select.ev-filter-rating').barrating('clear');
     $('.ev-contract-filter').parents('.mdl-switch').addClass('is-checked');
