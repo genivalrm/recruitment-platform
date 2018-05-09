@@ -8,15 +8,21 @@ a{
 .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
     padding-right: 0;
  }
- .mdl-layout__header{
+ .mdl-layout__header, .mdl-layout__tab-bar, .mdl-layout__tab-bar-button{
      background-color: #315199;
  }
-
-.mdl-layout__drawer{
+ .mdl-layout.is-upgraded .mdl-layout__tab.is-active{
+    color: rgba(255, 255, 255, 1.0);
+ }
+ .mdl-layout__tab{
+    color: rgba(255, 255, 255, 0.6);
+ }
+/* .mdl-layout__drawer{
     background-color: #315199;
     border-right-color: #315199;
-    color: white;
-}
+
+} */
+
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
     color: white;
 }
@@ -33,6 +39,7 @@ a{
     border-bottom-color: white;
     color: white;
 }
+
 .mdl-card__title, .mdl-card__actions{
     background-color: #EFEBE9;
 }
@@ -40,11 +47,13 @@ a{
     color: #757575;
 }
 .mdl-layout__drawer-button i{
-    /* font: normal normal normal 24px/1 FontAwesome !important; */
-    content: "\f0c9" !important;
+    content: "filter_list" !important;
 }
 
-
+.br-widget{
+    display: flex;
+    align-items: center;
+}
 
 
 /* personalization */
@@ -84,7 +93,7 @@ a{
 }
 
 .mdl-dialog{
-    max-width: 512px;
+    max-width: 460px;
     min-width: 360px;
     width: 100%;
 }
@@ -130,13 +139,22 @@ a{
     cursor: pointer;
     color: #edae01;
 }
-.font-white{
-    color: white !important;
-}
-
 
 @media (max-width: 1366px) {
   .icon-responsive {
     font-size: 20px;
-   }
+  }
 }
+
+@media (max-width: 472px) {
+    .mdl-dialog {
+      max-width: 90%;
+    }
+    .ev-submit-tag{
+         width: 100%;
+    }
+    
+    .mdl-textfield.is-focused .mdl-textfield__expandable-holder, .mdl-textfield.is-dirty .mdl-textfield__expandable-holder {
+        max-width: 100px;
+    }
+  }

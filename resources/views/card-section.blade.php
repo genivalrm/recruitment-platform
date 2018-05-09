@@ -30,13 +30,15 @@
             <ul class="mdl-list pd-tb-0 mg-tb-0">
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">phone</i>
                         <a href="tel:+55#">{{ $profile->phone }}</a>
                     </span>
                 </li>
                 <li class="mdl-list__item pd-tb-8">
                     <span class="mdl-list__item-primary-content">
-                        <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i>
+                        {{-- <i class="mdl-list__item-icon fa fa-envelope icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">email</i>
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                     </span>
                 </li>
@@ -78,7 +80,9 @@
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->id }}">
                 <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
             </button>
+
             <div class="none ev-search">{{ collect($profile->tag)->implode(' ') }}</div>
+
         </div>
     </div>
 </div>

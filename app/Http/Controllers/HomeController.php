@@ -10,7 +10,7 @@ use DB;
 class HomeController extends Controller
 {
 	public function index(){
-		$offices = Office::where('is_office', 1)->orderBy('created_at')->get();
+		$offices = Office::where('is_office', true)->orderBy('created_at')->get();
 		//foreach ($offices as $office) {
 		//	$office->id = crypt($office->id);
 		//}

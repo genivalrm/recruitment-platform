@@ -68,10 +68,16 @@
 /***/ "./resources/assets/js/insert.js":
 /***/ (function(module, exports) {
 
+//=============================================================================
+// File input
+//=============================================================================
 document.querySelector('input[name="upload-btn"]').onchange = function () {
     document.querySelector('input[name="upload-file"]').value = this.files[0].name;
 };
 
+//=============================================================================
+// Text fields with icons
+//=============================================================================
 document.addEventListener("DOMContentLoaded", function () {
 
     // Listening for input changes
@@ -96,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function checkTextfieldInput(input) {
-    // Getiing the input and the textfield
+    // Getting the input and the textfield
     if (input instanceof Element && input.matches(".mdl-textfield__input") === true) {
         var field = input.closest(".mdl-textfield"),
             hasValue = input.value.toString().length !== 0;
@@ -148,34 +154,35 @@ Element.prototype.isActive = function () {
     return this === document.activeElement;
 };
 
-//to make required fields not red
-// window.onload = function () {
-//     document.querySelectorAll('input[data-required=true]')
-//         .forEach(function(input){
-//             console.log(document.querySelectorAll('input[data-required=true]').length);
-//             input.required = "true";
-//     });
-// };
+//=================================================================
+//To make required fields not red
+//=================================================================
+$(window).on('load', function () {
+    $('input[data-required=true]').attr("required", "");
+});
 
-//  push it to array and remove required attribute
-var requiredComponents = document.querySelectorAll("[required]");
-requiredComponents.forEach(function (e) {
-    e.removeAttribute('required');
-});
-// // when submit button click, add required attribute back
-document.querySelector(".submit-btn").addEventListener("click", function () {
-    requiredComponents.forEach(function (e) {
-        e.setAttribute('required', true);
-    });
-});
-// // also when form submit event
-document.querySelector(".curriculo-form").addEventListener("submit", function () {
-    requiredComponents.forEach(function (e) {
-        e.setAttribute('required', true);
-    });
-});
-// you can also add required attribute back when any other event, like blur...etc.
+// //  push it to array and remove required attribute
+// let requiredComponents = document.querySelectorAll("[required]");
+// requiredComponents.forEach(function (e) {
+//     e.removeAttribute('required');
+// })
+// // // when submit button click, add required attribute back
+// document.querySelector(".submit-btn").addEventListener("click", function () {
+//     requiredComponents.forEach(function (e) {
+//         e.setAttribute('required', true)
+//     })
+// });
+// // // also when form submit event
+// document.querySelector(".curriculo-form").addEventListener("submit", function () {
+//     requiredComponents.forEach(function (e) {
+//         e.setAttribute('required', true)
+//     })
+// });
 
+
+//===============================================================================================
+//Jquery Mask to phone number
+//================================================================================================
 $(document).ready(function ($) {
     //Mask for telephone number
     var SPMaskBehavior = function SPMaskBehavior(val) {

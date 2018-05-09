@@ -25,7 +25,7 @@ mix.styles('resources/assets/css/utils.css', 'public/css/utils.css');
 mix.styles('resources/assets/css/login.css', 'public/css/login.css').version();
 mix.copy(['node_modules/dialog-polyfill/dialog-polyfill.css','node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css'], 'public/lib/css');
 
-// mix.browserSync({
-// 	proxy: '192.168.99.100:8080'
-// });
+mix.browserSync({
+	proxy: '192.168.99.100:8080'
+});
 
