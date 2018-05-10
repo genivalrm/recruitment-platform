@@ -14,6 +14,7 @@
         <script src="{{ mix('lib/js/jquery.barrating.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/dialog-polyfill.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/list.js') }}" type="text/javascript" DEFER="DEFER"></script>
+        <script src="{{ mix('js/search.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
@@ -43,19 +44,16 @@
                         </a>
                     </span>
                     <div class="mdl-layout-spacer"></div>
-                    <form action="{{ action('CurriculumController@index') }}" method="GET" autocomplete="off" class="typeahead" role="search">
-                        @csrf
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                                mdl-textfield--floating-label mdl-textfield--align-right text-field-pd-0">
-                            <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
-                                <i class="material-icons icon-responsive color-white">search</i>
-                                {{-- <i class="fa fa-search icon-responsive color-white" aria-hidden="true"></i> --}}
-                            </label>
-                            <div class="mdl-textfield__expandable-holder">
-                                <input class="mdl-textfield__input" type="search" name="name" id="nav-search" placeholder="Search" autocomplete="off">
-                            </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                            mdl-textfield--floating-label mdl-textfield--align-right text-field-pd-0">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="nav-search">
+                            <i class="material-icons icon-responsive color-white">search</i>
+                            {{-- <i class="fa fa-search icon-responsive color-white" aria-hidden="true"></i> --}}
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="search" name="search" id="nav-search" placeholder="Search" autocomplete="off">
                         </div>
-                    </form>
+                    </div>
                     <!-- Icon button -->
                     <button class="mdl-button mdl-js-button mdl-button--icon ml-26 mb-4">
                         <a href="{{ action('LoginController@logout') }}">
