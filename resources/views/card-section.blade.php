@@ -60,7 +60,8 @@
             <!-- Colored icon button -->
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
                 <a href="{{ action('CurriculumController@show', $profile->curriculum_id) }}" target="_blank">
-                    <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i>
+                    <i class="material-icons icon-color icon-responsive">insert_drive_file</i>
+                    {{-- <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i> --}}
                 </a>
             </button>
             @if($profile->github)
@@ -78,7 +79,8 @@
                 </button>
             @endif
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->id }}">
-                <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i>
+                {{-- <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i> --}}
+                <i class="material-icons icon-color icon-responsive">local_offer</i>
             </button>
 
             <div class="none ev-search">{{ collect($profile->tag)->implode(' ') }}</div>
