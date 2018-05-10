@@ -51,7 +51,7 @@
                             {{-- <i class="fa fa-search icon-responsive color-white" aria-hidden="true"></i> --}}
                         </label>
                         <div class="mdl-textfield__expandable-holder">
-                            <input class="mdl-textfield__input" type="search" name="search" id="nav-search" placeholder="Search" autocomplete="off">
+                            <input class="mdl-textfield__input" type="search" name="search" id="nav-search" placeholder="Pesquisar" autocomplete="off">
                         </div>
                     </div>
                     <!-- Icon button -->
@@ -107,7 +107,7 @@
                     </li>
                     <li class="mdl-list__item self-end">
                         <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect ev-reset-filter">
-                            Reset
+                            Limpar
                         </button>
                     </li>
                 </ul>

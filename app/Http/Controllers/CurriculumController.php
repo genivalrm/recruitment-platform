@@ -96,8 +96,13 @@ class CurriculumController extends Controller
 		$profile = Profile::find(decrypt($id));
 
 		$tag = Office::where('name', $in->tag)->first()->id;
-
-		$profile->tag = $profile->pull('tag', $tag);
+		
+		if(empty($profile->tag)){
+			$profile->office = $profile->pull('office', $tag);
+		}
+		else {
+			$profile->tag = $profile->pull('tag', $tag);
+		}
 	}
 
 	public function archive($id){

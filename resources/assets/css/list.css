@@ -145,3 +145,16 @@ a{
         max-width: 100px;
     }
   }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.5; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+    opacity: 0.5;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+    opacity: 0.5;
+}
