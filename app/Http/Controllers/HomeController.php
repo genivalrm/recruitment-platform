@@ -5,6 +5,7 @@ use App\Profile;
 use App\Curriculum;
 use App\Office;
 use DB;
+use Session;
 
 
 class HomeController extends Controller
@@ -18,6 +19,15 @@ class HomeController extends Controller
 	}
 
 	public function store(Request $in){
+		$this->validate($in, [
+            'name' => 'required',
+            'email' => 'required|email',
+			'tel' => 'required|min:14|max:15',
+			'upload-btn' => 'required|file|mimes:pdf',
+			'g-recaptcha-response' => 'required|recaptcha',
+			'github' => 'nullable|url',
+			'linkedin' => 'nullable|url',
+		]);
 		
 		$curriculum = new Curriculum;
 		$curriculum->attachment_id = $this->processAttachment($in->file('upload-btn'));
@@ -66,6 +76,8 @@ class HomeController extends Controller
 
 		$profile->push('curriculum_id', $curriculum->id);
 		$profile->save();
+
+		Session::flash('curriculumSended', 'Prontinho! Recebemos seu currículo. Entraremos em contrato em breve. Obrigado! :)');
 
 		return redirect('/');
 	}

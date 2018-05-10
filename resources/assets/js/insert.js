@@ -127,3 +127,16 @@ $(document).ready(function ($) {
         };
     $('[name="tel"]').mask(SPMaskBehavior, spOptions);
 });
+
+//To show loading when contact form is submited
+$( '.curriculo-form' ).submit(function( event ) {
+    // event.preventDefault();
+    var recaptcha = $('#g-recaptcha-response').val();
+    if (recaptcha === '') {
+        event.preventDefault();
+        $('.recaptcha-required').html('<p class="color-red font-12">Por favor, verifique o recaptcha.</p>');
+    }
+    else { 
+        
+    }
+});
