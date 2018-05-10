@@ -82,10 +82,8 @@
                 {{-- <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i> --}}
                 <i class="material-icons icon-color icon-responsive">local_offer</i>
             </button>
-
-            <div class="none ev-search-text">{{ collect($profile->tag)->implode(' ') }}</div>
-
         </div>
+        <div class="none ev-search-text" data-profile-id="{{ $profile->id }}">{{ collect($profile->tag)->implode(' ') }}</div>
     </div>
 </div>
 @endforeach

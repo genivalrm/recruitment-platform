@@ -11,33 +11,6 @@ $.ajaxSetup({
 //==========================================================================
 // FUNÇÕES AUXILIARES
 //==========================================================================
-//recupera as tags do perfil e coloca no dialog
-function populateDialog(profile_id) {
-    let route = '../curriculum/' + profile_id + '/tag' //monta a rota da requisição
-
-    $.get(route, function (data, status) {  //requisita as tags do curriculo
-        if (status === 'success') {
-            renderData(data.tag)
-        }
-        else {
-            console.log(status);
-        }
-    });
-
-    function renderData(tags) {
-        let content = $('.mdl-dialog__content');
-        content.empty();
-        if (tags.length > 0) {
-            tags.forEach(function (tag) {
-                content.append('<span class= "mdl-chip mdl-chip--deletable mr-4"><span class="mdl-chip__text">' + tag + '</span><button type="button" class="mdl-chip__action ev-remove-tag"><i class="material-icons">cancel</i></button></span>');
-            });
-            updateTagBtn(profile_id);
-        }
-        else {
-            content.html('<p>Nenhuma TAG encontrada.</p>');
-        }
-    }
-}
 //adiciona o listener aos botões de excluir tag
 function updateTagBtn(profile_id) {
     let route = '../curriculum/' + profile_id + '/tag/delete' //monta a rota da requisição
@@ -63,11 +36,18 @@ function populateDialog(profile_id) {
 
     function renderData(tags) {
         const content = $('.mdl-dialog__content');
+        let text = '';
+        let searchText = $( 'div.ev-search-text[data-profile-id="' + profile_id + '"]' );
+        
         content.empty();
+        searchText.empty();
+
         if (tags.length > 0) {
             tags.forEach(function (tag) {
                 content.append('<span class= "mdl-chip mdl-chip--deletable mr-4"><span class="mdl-chip__text">' + tag + '</span><button type="button" class="mdl-chip__action ev-remove-tag"><i class="material-icons">cancel</i></button></span>');
+                text += `${tag} `;
             });
+            searchText.text(text);
             updateTagBtn(profile_id);
         }
         else {
@@ -326,10 +306,9 @@ $(document).on('click', '.ev-open-dialog', function (btn) {
 
     showSpinner();
 
-    dialog_profile = $(this).attr('data-profile-id');
+    dialog_profile = $(this).attr('data-profile-id'); //pega o id do btn
 
     populateDialog(dialog_profile);
-
 
 
     dialog.showModal();
@@ -353,10 +332,11 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
 
     $.post(route, { tag: value }, function (data, status, xhr) {
         if (status === 'success') {
-            renderSection(data, section);
+            $('.ev-submit-tag').find('input[name="new-tag"]').val('');
++            populateDialog(dialog_profile);
         }
         else {
-            console.log(status);
+            console.log(xhr);
         }
     });
 });
