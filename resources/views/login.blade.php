@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<title>Curriculo - Login</title>
-
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
 		<script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
 		<script src="{{ mix('js/login.js') }}" type="text/javascript" DEFER="DEFER"></script>
@@ -15,7 +17,7 @@
 	</head>
 	<body>
 		<div class="mdl-grid h-full flex align-center">
-			<div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--4-offset-desktop mdl-cell--1-offset-tablet">
+			<div class="mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--4-offset-desktop mdl-cell--1-offset-tablet">
 				<div class="demo-card-square mdl-card mdl-shadow--8dp w-full">
 					<div class="mdl-card__title mdl-card--expand">
 						<h2 class="mdl-card__title-text">Login</h2>
