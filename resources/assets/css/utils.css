@@ -11,6 +11,9 @@
 .self-end{
     align-self: flex-end;
 }
+.align-center{
+    align-items: center;
+}
 .row{
     flex-direction: row;
 }
@@ -20,6 +23,9 @@
 .center{
     align-items: center;
     justify-content: center;
+}
+.flex-end{
+    justify-content: flex-end;
 }
 .wrap-reverse{
     flex-wrap: wrap-reverse;
@@ -36,6 +42,9 @@
 }
 .w-full{
     width: 100%;
+}
+.h-full{
+    height: 100%;
 }
 .max{
     height: 100%;
@@ -90,6 +99,9 @@
 .pr-8{
     padding-right: 8px;
 }
+.pr-6{
+    padding-right: 6px;
+}
 .pd-tb-60{
     padding-top: 60px;
     padding-bottom: 60px;
@@ -131,6 +143,9 @@
 .font-14{
     font-size: 14px;
 }
+.font-10{
+    font-size: 10px;
+}
 /* colors */
 .color-red{
     color: #de3226;
@@ -171,6 +186,9 @@
 }
 .ml-4{
     margin-left: 4px;
+}
+.ml-8{
+    margin-left: 8px;
 }
 .ml-auto{
     margin-left: auto;

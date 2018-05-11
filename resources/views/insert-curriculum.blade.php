@@ -61,33 +61,33 @@
                             <div class="mdl-card__supporting-text mdl-card__supporting-text--full">
                                 <form class="curriculo-form" action="{{ action('HomeController@store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24">
-                                        <i class="mdl-textfield__icon material-icons">person</i>
+                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
+                                        <i class="mdl-textfield__icon material-icons self-center">person</i>
                                         <input class="mdl-textfield__input" name="name" type="text" data-required="true">
                                         <label class="mdl-textfield__label">Nome*</label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24">
-                                        <i class="mdl-textfield__icon material-icons">email</i>
+                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
+                                        <i class="mdl-textfield__icon material-icons self-center">email</i>
                                         <input class="mdl-textfield__input" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                         data-required="true">
                                         <label class="mdl-textfield__label">E-mail*</label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24">
-                                        <i class="mdl-textfield__icon material-icons">call</i>
+                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
+                                        <i class="mdl-textfield__icon material-icons self-center">call</i>
                                         <input class="mdl-textfield__input" name="tel" type="text" pattern=".{14,15}" data-required="true">
                                         <label class="mdl-textfield__label">Telefone*</label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24">
-                                        <i class="mdl-textfield__icon fab fa-linkedin icon-24"></i>
+                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
+                                        <i class="mdl-textfield__icon fab fa-linkedin icon-24 self-center"></i>
                                         <input class="mdl-textfield__input" name="linkedin" type="url" pattern="https?://(www.)?linkedin.com/in/.+">
                                         <label class="mdl-textfield__label">LinkedIn</label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24">
-                                        <i class="mdl-textfield__icon fab fa-github icon-24"></i>
+                                    <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
+                                        <i class="mdl-textfield__icon fab fa-github icon-24 self-center"></i>
                                         <input class="mdl-textfield__input" name="github" type="url" pattern="https?://(www.)?github.com/.+">
                                         <label class="mdl-textfield__label">GitHub</label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--file w-full pr-24">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--file w-full pr-24 flex align-center">
                                         <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file mr-24">
                                             <i class="material-icons">attach_file</i>
                                             <input type="file" name="upload-btn" accept=".pdf" required>
