@@ -97,11 +97,8 @@ class CurriculumController extends Controller
 
 		$tag = Office::where('name', $in->tag)->first()->id;
 		
-		if(empty($profile->tag)){
+		if(empty($profile->pull('tag', $tag))){
 			$profile->office = $profile->pull('office', $tag);
-		}
-		else {
-			$profile->tag = $profile->pull('tag', $tag);
 		}
 	}
 
