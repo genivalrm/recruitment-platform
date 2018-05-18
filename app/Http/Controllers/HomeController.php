@@ -10,15 +10,18 @@ use Session;
 
 class HomeController extends Controller
 {
-	public function index(){
+	public function index()
+	{
+		//pega as áres de interesse do banco e direciona para a tela de submeter currículos
 		$offices = Office::where('is_office', true)->orderBy('created_at')->get();
-		//foreach ($offices as $office) {
-		//	$office->id = crypt($office->id);
-		//}
+
 		return view('insert-curriculum', ['offices' => $offices]);
 	}
 
-	public function store(Request $in){
+	public function store(Request $in)
+	{
+		// salva o currículo
+		// checagem dos dados recebidos
 		$this->validate($in, [
             'name' => 'required',
             'email' => 'required|email',
@@ -28,61 +31,41 @@ class HomeController extends Controller
 			'github' => 'nullable|url',
 			'linkedin' => 'nullable|url',
 		]);
-		
+		//salva currículo
 		$curriculum = new Curriculum;
 		$curriculum->attachment_id = $this->processAttachment($in->file('upload-btn'));
 		$curriculum->save();
-
-		//$tags = (array) $in->office;
-		// $tags = Office::find((array) $in->office)->pluck('name');
-		// $tags = Office::whereIn('_id', (array) $in->office)->get()->pluck('name');
-		// foreach ($tags as $i => $id) {
-		// 	$office = Office::where('_id', $id)->first();
-		// 	$id = $office->name;
-		// 	$tags[$i] = $office->name;
-		// }
-
+		//verifica se profile já existe pelo e-mail
 		$profile = Profile::where('email', strtolower($in->email))->first();
-		if ( $profile ) {
-			$profile->push('curriculum_id', $curriculum->id);
-			$profile->name = $in->name;
-			$profile->phone = $in->tel;
-			$profile->star = '0';
-			$profile->internship = $in->internship;
-			$profile->office = $in->office;
-			if ($in->linkedin) {
-				$profile->linkedin = $in->linkedin;
-			}
-			if ($in->github) {
-				$profile->github = $in->github;
-			}
-			$profile->save();
-			return redirect('/');
+		if ( !$profile ) {
+			$profile = new Profile;
 		}
-		
-		$profile = new Profile;
+		//salva dados do profile		
 		$profile->name = $in->name;
 		$profile->phone = $in->tel;
 		$profile->star = '0';
 		$profile->email = $in->email;
 		$profile->internship = $in->internship;
 		$profile->office = $in->office;
+		$profile->tag = [];
 		if ($in->linkedin) {
 			$profile->linkedin = $in->linkedin;
 		}
 		if ($in->github) {
 			$profile->github = $in->github;
 		}
-
+		//insere o novo currículo na última posição
 		$profile->push('curriculum_id', $curriculum->id);
 		$profile->save();
-
+		//msg
 		Session::flash('curriculumSended', 'Prontinho! Recebemos seu currículo. Entraremos em contrato em breve. Obrigado! :)');
-
+		//redireciona para a página de submeter currículo
 		return redirect('/');
 	}
 	
-	private function processAttachment($attachment){
+	private function processAttachment($attachment)
+	{
+		//salva o pdf do currículo
 		if ($attachment->isValid()) {
 			$bucket = DB::getMongoDB()->selectGridFSBucket(['bucketName' => 'attachment']);
 			$file = fopen($attachment->getRealPath(), 'rb');

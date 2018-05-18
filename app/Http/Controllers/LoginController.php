@@ -32,7 +32,8 @@ class LoginController extends Controller
         return redirect()->intended('auth')->with('message', 'Dados Incorretos');
     }
 
-    public function logout(){
+    public function logout()
+    {
     	auth()->logout();
     	return redirect(action('HomeController@index'));
     }

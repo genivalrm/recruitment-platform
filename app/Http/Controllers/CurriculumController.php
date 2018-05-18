@@ -10,7 +10,8 @@ use View;
 
 class CurriculumController extends Controller
 {
-	public function index(Request $in){
+	public function index(Request $in)
+	{
 		$archived = $not_archived = [];
 		if ( !$in->not_archived ) {
 			$archived = Profile::where('archived', true)->orderBy('star', 'desc')->get();
@@ -36,25 +37,28 @@ class CurriculumController extends Controller
 			$curriculum_ids[] = $profile->curriculum_id;
 			$profile->tag = $this->listTag($profile->id)['tag'];
 		}
-		if ($in->archived){
+		if ($in->archived) {
 			return view('card-section', ['profiles' => $archived, 'curriculas' => $curriculas]);
 		}
-		elseif ($in->not_archived){
+		elseif ($in->not_archived) {
 			return view('card-section', ['profiles' => $not_archived, 'curriculas' => $curriculas]);
 		}
-		else{
+		else {
 			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived, 'curriculas' => $curriculas]);	
 		}
 	}
 
-	public function store(Request $in){
+	/*public function store(Request $in)
+	{
 		$curriculum = Curriculum::find(decrypt($in->id));
 		$curriculum->save();
 
 		return redirect('curriculum');
-	}
+	}*/
 
-	public function show($id) {
+	public function show($id)
+	{
+		//mostra o currículo
 		$curriculum = Curriculum::find(decrypt($id));
 		$bucket = DB::getMongoDB()->selectGridFSBucket([ 'bucketName' => 'attachment' ]);
 		$stream = $bucket->openDownloadStream(new ObjectId($curriculum->attachment_id));
@@ -71,13 +75,17 @@ class CurriculumController extends Controller
 		return response(stream_get_contents($stream))->header('Content-Type', $mimeType);
 	}
 
-	public function updateStar(Request $in, $id){
+	public function updateStar(Request $in, $id)
+	{
+		//atualizar estrelas
 		$profile = Profile::find(decrypt($id));
 		$profile->star = $in->star;
 		$profile->save();
 	}
 
-	public function listTag($id){
+	public function listTag($id)
+	{
+		//pegar tags
 		$tag = [];
 		$tag = array_merge(Profile::find(decrypt($id))->tag ?: [], Profile::find(decrypt($id))->office ?: []);
 		$tag = Office::find((array) $tag)->pluck('name');
@@ -86,13 +94,17 @@ class CurriculumController extends Controller
 		]; 
 	}
 
-	public function insertTag(Request $in, $id){
+	public function insertTag(Request $in, $id)
+	{
+		//inserir tag
 		$profile = Profile::find(decrypt($id));
 		$tag = Office::firstOrCreate(['name' => $in->tag])->_id;
 		$profile->tag = $profile->push('tag', $tag);
 	}
 
-	public function deleteTag(Request $in, $id){
+	public function deleteTag(Request $in, $id)
+	{
+		//deletar tag
 		$profile = Profile::find(decrypt($id));
 
 		$tag = Office::where('name', $in->tag)->first()->id;
@@ -102,13 +114,17 @@ class CurriculumController extends Controller
 		}
 	}
 
-	public function archive($id){
+	public function archive($id)
+	{
+		//arquivar profile
 		$profile = Profile::find(decrypt($id));
 		$profile->archived = true;
 		$profile->save();
 	}
 
-	public function restore($id){
+	public function restore($id)
+	{
+		//desarquivar profile
 		$profile = Profile::find(decrypt($id));
 		$profile->archived = false;
 		$profile->save();
