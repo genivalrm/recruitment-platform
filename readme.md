@@ -1,18 +1,22 @@
+# Plataforma de Recrutamento
+
 ## About
+Uma plataforma para envio e gerenciamento de currículos.
 
-Lets you enter and view resumes
+### Tecnologias
+  * Laravel 5.6
+  * PHP 7.1
+  * Material Design Lite
+  * MongoDB
 
-## Use
-
-Laravel 5.6 and PHP 7.1
-
-## Installation Laravel
-
-https://laravel.com/docs/5.6
-
-## Images view
-
-![Insert](/example_photos/insert.png)
-
-
-![List](/example_photos/list.png)
+## Instalação
+> Configure o seu .env
+> Entre no diretório do projeto e execute os seguintes comandos
+```
+  - $ npm install
+  - $ composer install
+  - $ yarn run dev
+  - $ yarn watch
+```
+### TODO
+- [ ] **Bug** - Se houver pesquisa, filtrar somente pelos currículos que são retornados pela pesquisa 
