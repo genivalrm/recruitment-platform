@@ -1,6 +1,6 @@
 # Plataforma de Recrutamento
 
-## About
+## Sobre
 Uma plataforma para envio e gerenciamento de currículos.
 
 ### Tecnologias
