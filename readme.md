@@ -11,6 +11,7 @@ Uma plataforma para envio e gerenciamento de currículos.
 
 ## Instalação
 > Configure o seu .env
+
 > Entre no diretório do projeto e execute os seguintes comandos
 ```
   - $ npm install
