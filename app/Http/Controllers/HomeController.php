@@ -48,6 +48,7 @@ class HomeController extends Controller
 		$profile->internship = $in->internship;
 		$profile->office = $in->office;
 		$profile->tag = [];
+		$profile->archived = false;
 		if ($in->linkedin) {
 			$profile->linkedin = $in->linkedin;
 		}
