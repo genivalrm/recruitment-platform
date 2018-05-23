@@ -248,5 +248,13 @@
 }
 
 .logo-drawer{
-    max-height: 50px;
+    max-height: 35px;
+}
+
+@media (max-width: 1024px) {
+    .logo{
+        width: 30%;
+        max-height: 35px;
+        margin: 0 auto;
+    }
 }
