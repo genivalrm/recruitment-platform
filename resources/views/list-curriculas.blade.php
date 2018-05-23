@@ -35,12 +35,12 @@
                 <!-- Title -->
                     <span class="mdl-layout-title mdl-layout--large-screen-only">
                         <a href="/curriculum">
-                            <img src="../images/logo.png" class="logo" alt="You logo">
+                            <img src="{{env('LOGO'),'../images/logo.png'}}" class="logo" alt="You logo">
                         </a>
                     </span>
                     <span class="mdl-layout-title mdl-layout--small-screen-only">
                         <a href="/curriculum">
-                            <img src="../images/logo-mobile.png" class="logo" alt="You logo">
+                            <img src="{{env('LOGO_DRAWER_WHITE'), '../images/logo-mobile.png'}}" class="logo" alt="You logo">
                         </a>
                     </span>
                     <div class="mdl-layout-spacer"></div>

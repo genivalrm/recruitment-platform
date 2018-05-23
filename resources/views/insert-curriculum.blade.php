@@ -28,7 +28,7 @@
                     <!-- Title -->
                     <span class="mdl-layout-title mdl-layout--large-screen-only">
                         <a href="#">
-                            <img src="../images/logo.png" class="logo" alt="You logo">
+                        <img src="{{env('LOGO', '../images/logo.png')}}" class="logo" alt="logo">
                         </a>
                     </span>
                     <!-- Add spacer, to align navigation to the right -->
@@ -42,7 +42,7 @@
                 <div class="mdl-layout__drawer">
                     <span class="mdl-layout-title">
                         <a href="#">
-                            <img src="../images/logo-mobile.png" class="logo-drawer" alt="You logo">
+                            <img src="{{env('LOGO_DRAWER', '../images/logo-mobile.png')}}" class="logo-drawer" alt="logo">
                         </a>
                     </span>
                     <nav class="mdl-navigation">
@@ -52,7 +52,7 @@
                 <main class="mdl-layout__content flex center">
                     <div class="front-of-bg mb-90 mg-lr-10 self-start">
                         {{-- <div class="mb-30">
-                            <img src="images/logo.png" class="shadow logo" alt="You logo">
+                            <img src="images/logo.png" class="shadow logo" alt="logo">
                         </div> --}}
                         <div class="mb-30 text-center">
                             <h5 class="phrase">May your force be with us!</h5>
