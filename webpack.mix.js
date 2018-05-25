@@ -15,6 +15,7 @@ mix.js('resources/assets/js/login.js', 'public/js/login.js');
 mix.js('resources/assets/js/modal.js', 'public/js/modal.js');
 mix.js('resources/assets/js/insert.js', 'public/js/insert.js');
 mix.js('resources/assets/js/list.js', 'public/js/list.js');
+mix.js('resources/assets/js/mask-tel.js', 'public/js/mask-tel.js');
 mix.js('resources/assets/js/search.js', 'public/js/search.js');
 mix.copy(['node_modules/jquery/dist/jquery.min.js', 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
 	'node_modules/jquery-bar-rating/dist/jquery.barrating.min.js', 'node_modules/dialog-polyfill/dialog-polyfill.js'], 'public/lib/js');

@@ -42,7 +42,7 @@ class HomeController extends Controller
 		}
 		//salva dados do profile		
 		$profile->name = $in->name;
-		$profile->phone = $in->tel;
+		$profile->phone = preg_replace("/\D+/", "", $in->tel);
 		$profile->star = '0';
 		$profile->email = $in->email;
 		$profile->internship = $in->internship;
