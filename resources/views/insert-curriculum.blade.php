@@ -35,7 +35,7 @@
                     <div class="mdl-layout-spacer"></div>
                     <!-- Navigation -->
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        <a class="mdl-navigation__link color-white" href="../curriculum/auth">Login</a>
+                        <a class="mdl-navigation__link color-white" href="../curriculum">Login</a>
                     </nav>
                     </div>
                 </header>
