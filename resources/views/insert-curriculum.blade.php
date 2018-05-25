@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="pd-20-tb ml-48">
                                         <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
-                                            <input type="checkbox" name="internship[]" class="mdl-switch__input" value="1">
+                                            <input type="checkbox" name="internship" class="mdl-switch__input" value="1">
                                             <span class="mdl-switch__label font-16">Estágio</span>
                                         </label>
                                     </div>
