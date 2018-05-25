@@ -19,7 +19,7 @@ Uma plataforma para envio e gerenciamento de currículos.
   - $ yarn run dev
   - $ yarn watch
 ```
-## Configuraçes
+## Configurações
 * Logo: As logos devem ser colocadas em public/images, com o mesmo nome ou com outro e nesse caso lembre-se de alterar também nos locais onde elas são chamadas.
 * Áreas de Interesse: Abra o terminal e execute os comandos:
 ```
