@@ -37,6 +37,7 @@ class CurriculumController extends Controller
 			$curriculum_ids[] = $profile->curriculum_id;
 			$profile->tag = $this->listTag($profile->id)['tag'];
 		}
+		
 		if ($in->archived) {
 			return view('card-section', ['profiles' => $archived, 'curriculas' => $curriculas]);
 		}

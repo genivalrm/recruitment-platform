@@ -62,7 +62,7 @@ a{
 }
 
 .icon-responsive{
-    font-size: 24px;
+    font-size: 24px !important;
 }
 
 .icon-color{
@@ -77,19 +77,6 @@ a{
 .chip-contrato{
     background-color: #D08CEF;
     color: white;
-}
-
-.logo{
-    width: 50%;
-    max-height: 50px;
-    margin: 0 auto;
-}
-
-.logo-drawer{
-    width: 50%;
-    max-height: 50px;
-    display: block;
-    margin: 16px auto;
 }
 
 .mdl-dialog{
@@ -142,7 +129,7 @@ a{
 
 @media (max-width: 1366px) {
   .icon-responsive {
-    font-size: 20px;
+    font-size: 20px !important;
   }
 }
 
@@ -158,3 +145,16 @@ a{
         max-width: 100px;
     }
   }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.5; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+    opacity: 0.5;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+    opacity: 0.5;
+}

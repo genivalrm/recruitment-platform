@@ -1,0 +1,44 @@
+
+<!-- saved from url=(0060)file:///home/sysvale/Genival/pessoal/CursoJs/lista2_ex2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><header>
+		<title>Curso Javascript</title>
+	</header>
+	
+	
+		<button>Criar</button>
+		
+		<script>
+		// javascript
+		
+			var botao = document.querySelector('button');
+			
+			function getRandomColor() {
+				var letters = '0123456789ABCDEF';
+				var color = '#';
+			  	
+				for (var i = 0; i < 6; i++) {
+					color += letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
+			}
+
+			function start(){
+				var newColor = getRandomColor(); // #E943F0
+				
+				event.target.style.backgroundColor = newColor;
+			}
+			
+			botao.onclick = function(){
+				var element = document.createElement('div');
+				element.style.width = 100;
+				element.style.height = 100;
+				element.style.margin = 2;
+				element.addEventListener('mouseover', start);
+				element.style.backgroundColor = '#f00';
+				
+				document.body.appendChild(element);
+			}
+			
+		</script>
+	
+<div style="width: 100px; height: 100px; margin: 2px; background-color: rgb(213, 199, 181);"></div><div style="width: 100px; height: 100px; margin: 2px; background-color: rgb(135, 43, 55);"></div><div style="width: 100px; height: 100px; margin: 2px; background-color: rgb(61, 154, 38);"></div></body></html>
