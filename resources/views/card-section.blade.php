@@ -32,7 +32,7 @@
                     <span class="mdl-list__item-primary-content">
                         {{-- <i class="mdl-list__item-icon fa fa-phone icon-responsive" aria-hidden="true"></i> --}}
                         <i class="mdl-list__item-icon material-icons icon-responsive">phone</i>
-                        <a href="tel:+55#">{{ $profile->phone }}</a>
+                        <a class="mask-tel" href="tel:+55#">{{ $profile->phone }}</a>
                     </span>
                 </li>
                 <li class="mdl-list__item pd-tb-8">

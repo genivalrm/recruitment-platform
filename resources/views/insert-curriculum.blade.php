@@ -10,6 +10,7 @@
         <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
+        <script src="{{ mix('js/mask-tel.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/insert.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -74,7 +75,7 @@
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
                                         <i class="mdl-textfield__icon material-icons self-center">call</i>
-                                        <input class="mdl-textfield__input" name="tel" type="text" pattern=".{14,15}" data-required="true">
+                                        <input class="mdl-textfield__input mask-tel" name="tel" type="text" pattern=".{14,15}" data-required="true">
                                         <label class="mdl-textfield__label">Telefone*</label>
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">

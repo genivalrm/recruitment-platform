@@ -12,8 +12,10 @@
         <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/jquery.barrating.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
+        <script src="{{ mix('lib/js/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/dialog-polyfill.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/list.js') }}" type="text/javascript" DEFER="DEFER"></script>
+        <script src="{{ mix('js/mask-tel.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/search.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
