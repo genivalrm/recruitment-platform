@@ -15,7 +15,7 @@
                 @endif
             </div>
             <div class="mt-5 rating-div">
-                <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->id }}">
+                <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->_id }}">
                     {{-- <option value=""></option> --}}
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -47,10 +47,10 @@
         <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
             <!-- Colored mini FAB button -->
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->id }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->_id }}">
                     <i class="material-icons icon-responsive">unarchive</i>                   
             @else
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->id }}">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->_id }}">
                     <i class="material-icons icon-responsive">archive</i> 
             @endif
                 </button>
@@ -59,7 +59,7 @@
         <div class="mdl-card__actions flex space-between">
             <!-- Colored icon button -->
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                <a href="{{ action('CurriculumController@show', $profile->curriculum_id) }}" target="_blank">
+                <a href="{{ action('CurriculumController@show', $profile->_id) }}" target="_blank">
                     <i class="material-icons icon-color icon-responsive">insert_drive_file</i>
                     {{-- <i class="mdl-textfield__icon fa fa-paperclip icon-color icon-responsive" aria-hidden="true"></i> --}}
                 </a>
@@ -78,12 +78,12 @@
                     </a>
                 </button>
             @endif
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->id }}">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->_id }}">
                 {{-- <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i> --}}
                 <i class="material-icons icon-color icon-responsive">local_offer</i>
             </button>
         </div>
-        <div class="none ev-search-text" data-profile-id="{{ $profile->id }}">{{ collect($profile->tag)->implode(' ') }}</div>
+        <div class="none ev-search-text" data-profile-id="{{ $profile->_id }}">{{ collect($profile->tag)->implode(' ') }}</div>
     </div>
 </div>
 @endforeach

@@ -31,11 +31,7 @@ class HomeController extends Controller
 			'github' => 'nullable|url',
 			'linkedin' => 'nullable|url',
 		]);
-		//salva currículo
-		$curriculum = new Curriculum;
-		$curriculum->attachment_id = $this->processAttachment($in->file('upload-btn'));
-		$curriculum->save();
-		//verifica se profile já existe pelo e-mail
+		//verifica se profile já existe atráves da checagem de e-mail
 		$profile = Profile::where('email', strtolower($in->email))->first();
 		if ( !$profile ) {
 			$profile = new Profile;
@@ -55,9 +51,12 @@ class HomeController extends Controller
 		if ($in->github) {
 			$profile->github = $in->github;
 		}
-		//insere o novo currículo na última posição
-		$profile->push('curriculum_id', $curriculum->id);
 		$profile->save();
+		//salva currículo
+		$curriculum = new Curriculum;
+		$curriculum->attachment_id = $this->processAttachment($in->file('upload-btn'));
+		$curriculum->profile_id = $profile->_id;
+		$curriculum->save();
 		//msg
 		Session::flash('curriculumSended', 'Prontinho! Recebemos seu currículo. Entraremos em contrato em breve. Obrigado! :)');
 		//redireciona para a página de submeter currículo
