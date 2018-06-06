@@ -3,12 +3,14 @@
 class Profile extends \Moloquent {
 	public $fillable = ['name', 'email', 'phone', 'internship', 'tag[]', 'star'];
 
+
 	public function setEmailAtributte($value)
 	{
 		$this->attributes['email'] = strtolower($value);
 	}
 
-	public function curriculum(){
+	public function curriculum()
+	{
 		return $this->hasMany('App\Curriculum');
 	}
 

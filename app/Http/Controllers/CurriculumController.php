@@ -21,46 +21,36 @@ class CurriculumController extends Controller
 			$not_archived = Profile::where('archived', '!=', true)->orderBy('star', 'desc')->get();
 		}
 			
-		$curriculum_ids = [];
-		$curriculas = Curriculum::find($curriculum_ids)->keyBy('id');
 		foreach ($archived as $i => $profile) {
-			$profile->id = encrypt($profile->_id);
-			$profile->curriculum_id = encrypt(collect($profile->curriculum_id)->last());
-			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = $this->listTag($profile->id)['tag'];
+			$profile->_id = encrypt($profile->_id);
+			$profile->tag = $this->listTag($profile->_id)['tag'];
 		}
 		foreach ($not_archived as $i => $profile) {
-			$profile->id = encrypt($profile->_id);
-
-			$profile->curriculum_id = encrypt(collect($profile->curriculum_id)->last());
-
-			$curriculum_ids[] = $profile->curriculum_id;
-			$profile->tag = $this->listTag($profile->id)['tag'];
+			$profile->_id = encrypt($profile->_id);
+			$profile->tag = $this->listTag($profile->_id)['tag'];
 		}
 		
 		if ($in->archived) {
-			return view('card-section', ['profiles' => $archived, 'curriculas' => $curriculas]);
+			return view('card-section', ['profiles' => $archived]);
 		}
 		elseif ($in->not_archived) {
-			return view('card-section', ['profiles' => $not_archived, 'curriculas' => $curriculas]);
+			return view('card-section', ['profiles' => $not_archived]);
 		}
 		else {
-			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived, 'curriculas' => $curriculas]);	
+			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived]);	
 		}
 	}
-
-	/*public function store(Request $in)
-	{
-		$curriculum = Curriculum::find(decrypt($in->id));
-		$curriculum->save();
-
-		return redirect('curriculum');
-	}*/
 
 	public function show($id)
 	{
 		//mostra o currículo
-		$curriculum = Curriculum::find(decrypt($id));
+		$curriculum = Curriculum::where('profile_id', decrypt($id))->orderBy('created_at', 'cres')->firstOrFail();
+		if (!$curriculum) {
+			return [
+				'status' => 0,
+				'message' => 'Arquivo não encontrado.',
+			];
+		}
 		$bucket = DB::getMongoDB()->selectGridFSBucket([ 'bucketName' => 'attachment' ]);
 		$stream = $bucket->openDownloadStream(new ObjectId($curriculum->attachment_id));
 		if ( !isset($stream) ) {
