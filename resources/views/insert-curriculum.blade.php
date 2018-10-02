@@ -4,25 +4,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="Trabalhe conosco - {{env('company', '')}}">
+		<meta name="keywords" content="curriculum,{{env('company', '')}},trabalhe">
+		<meta name='language' content='pt-br'>
+		<link rel="shortcut icon" href="{{env('FAVICON', '../images/favicon.png')}}" type="image/x-icon">
         <title>Trabalhe conosco</title>
 
         <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
-        <script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
+        <script src="{{ mix('lib/js/material-lite.js') }}" DEFER="DEFER"></script>
         <script src="{{ mix('js/mask-tel.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/insert.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
-            crossorigin="anonymous">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
+        <link rel="stylesheet" href="{{ mix('lib/material-icons.css') }}">
+        <link href="{{ mix('lib/roboto-300-400-700') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ mix('lib/fontawesome-5.0.10-all') }}">
+        <link rel="stylesheet" href="{{ mix('lib/material-lite.css') }}" />
         <link rel="stylesheet" href="{{ mix('css/utils.css') }}">
         <link rel="stylesheet" href="{{ mix('css/insert.css') }}">
     </head>
 <!-- Uses a transparent header that draws on top of the layout's background -->
-    <body class="flex row center max"> 
+    <body class="flex row center max">
             <div class="demo-layout-transparent mdl-layout mdl-js-layout mdl-layout--no-desktop-drawer-button mdl-layout--fixed-header">
                 <header class="mdl-layout__header mdl-layout__header--transparent">
                     <div class="mdl-layout__header-row">
@@ -64,7 +67,7 @@
                                     @csrf
                                     <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
                                         <i class="mdl-textfield__icon material-icons self-center">person</i>
-                                        <input class="mdl-textfield__input" name="name" type="text" data-required="true">
+                                        <input class="mdl-textfield__input" name="name" type="text" data-required="true" autofocus>
                                         <label class="mdl-textfield__label">Nome*</label>
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield w-full pr-24 flex align-center">
