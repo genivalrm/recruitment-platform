@@ -5,13 +5,13 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<script src="https://code.getmdl.io/1.3.0/material.min.js" DEFER="DEFER"></script>
+		<script src="{{ mix('lib/js/material-lite.js') }}" DEFER="DEFER"></script>
 		<script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
 		<script src="{{ mix('js/login.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
+		<link rel="stylesheet" href="{{ mix('lib/material-icons.css') }}">
+		<link href="{{ mix('lib/roboto-300-400-700') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ mix('lib/material-lite.css') }}" />
 		<link rel="stylesheet" href="{{ mix('css/utils.css') }}">
 		<link rel="stylesheet" href="{{ mix('css/login.css') }}">
 	</head>

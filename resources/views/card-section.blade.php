@@ -66,14 +66,14 @@
             </button>
             @if($profile->github)
                 <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <a href="https://github.com/Gabrielr2508" target="_blank">
+                    <a href="{{ $profile->github }}" target="_blank">
                         <i class="mdl-textfield__icon fa fa-github icon-color icon-responsive"></i>
                     </a>
                 </button>
             @endif
             @if($profile->linkedin)
                 <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <a href="https://linkedin.com/in/GabrielRGomes" target="_blank">
+                    <a href="{{ $profile->linkedin }}" target="_blank">
                         <i class="mdl-textfield__icon fa fa-linkedin-square icon-color icon-responsive"></i>
                     </a>
                 </button>
