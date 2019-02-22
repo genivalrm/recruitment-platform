@@ -20,7 +20,7 @@ class CurriculumController extends Controller
 		if ( !$in->archived ) {
 			$not_archived = Profile::where('archived', '!=', true)->orderBy('star', 'desc')->get();
 		}
-			
+
 		foreach ($archived as $i => $profile) {
 			$profile->_id = encrypt($profile->_id);
 			$profile->tag = $this->listTag($profile->_id)['tag'];
@@ -29,7 +29,7 @@ class CurriculumController extends Controller
 			$profile->_id = encrypt($profile->_id);
 			$profile->tag = $this->listTag($profile->_id)['tag'];
 		}
-		
+
 		if ($in->archived) {
 			return view('card-section', ['profiles' => $archived]);
 		}
@@ -37,14 +37,26 @@ class CurriculumController extends Controller
 			return view('card-section', ['profiles' => $not_archived]);
 		}
 		else {
-			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived]);	
+			return view('list-curriculas', ['archived' => $archived, 'not_archived' => $not_archived]);
 		}
 	}
 
 	public function show($id)
 	{
 		//mostra o currículo
-		$curriculum = Curriculum::where('profile_id', decrypt($id))->orderBy('created_at', 'cres')->firstOrFail();
+		$profile = Profile::find(decrypt($id));
+
+		if (!empty($profile->curriculum_id)) {
+			Curriculum::whereIn('_id', $profile->curriculum_id)->update([
+				'profile_id' => $profile->id,
+			]);
+			$profile->unset('curriculum_id');
+		}
+
+		$curriculum = Curriculum::where('profile_id', $profile->id)
+			->orderBy('created_at', 'desc')
+			->first();
+
 		if (!$curriculum) {
 			return [
 				'status' => 0,
@@ -82,7 +94,7 @@ class CurriculumController extends Controller
 		$tag = Office::find((array) $tag)->pluck('name');
 		return [
 			'tag' => $tag,
-		]; 
+		];
 	}
 
 	public function insertTag(Request $in, $id)
@@ -99,7 +111,7 @@ class CurriculumController extends Controller
 		$profile = Profile::find(decrypt($id));
 
 		$tag = Office::where('name', $in->tag)->first()->id;
-		
+
 		if(empty($profile->pull('tag', $tag))){
 			$profile->office = $profile->pull('office', $tag);
 		}
