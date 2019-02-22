@@ -13,14 +13,17 @@
 
         <script src="{{ mix('lib/js/jquery.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('lib/js/jquery.mask.min.js') }}" type="text/javascript" DEFER="DEFER"></script>
-        <script src="{{ mix('lib/js/material-lite.js') }}" DEFER="DEFER"></script>
+        <script src="{{ mix('lib/js/material.min.js') }}" DEFER="DEFER"></script>
         <script src="{{ mix('js/mask-tel.js') }}" type="text/javascript" DEFER="DEFER"></script>
         <script src="{{ mix('js/insert.js') }}" type="text/javascript" DEFER="DEFER"></script>
 
-        <link rel="stylesheet" href="{{ mix('lib/material-icons.css') }}">
-        <link href="{{ mix('lib/roboto-300-400-700') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ mix('lib/fontawesome-5.0.10-all') }}">
-        <link rel="stylesheet" href="{{ mix('lib/material-lite.css') }}" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="{{ mix('lib/material-icons.css') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ mix('lib/roboto-300-400-700') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ mix('lib/fontawesome-5.0.10-all') }}"> --}}
+        <link rel="stylesheet" href="{{ mix('lib/css/material.min.css') }}" />
         <link rel="stylesheet" href="{{ mix('css/utils.css') }}">
         <link rel="stylesheet" href="{{ mix('css/insert.css') }}">
     </head>
@@ -133,7 +136,7 @@
                     </div>
                 </main>
             </div>
-        
+
             @if(Session('curriculumSended'))
                 <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-snackbar--active mdl-snackbar-success mdl-js-snackbar flex center">
                     <i class="material-icons color-dark-green pl-16">done</i>
@@ -149,7 +152,7 @@
                         });
                     });
                     function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
-                </script>   
+                </script>
             @endif
 
             @if ($errors->any())
@@ -162,7 +165,7 @@
                         </ul>
                     </div>
                     <button type="button" class="mdl-snackbar__action none"></button>
-                </div>  
+                </div>
             @endif
     </body>
 </html>
