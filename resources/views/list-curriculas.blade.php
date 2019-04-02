@@ -110,44 +110,7 @@
 
                         </span>
                     </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">
-                            <spam>Áreas de Interesse</spam>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item ev-filter-tags">
-                        <div class="mdl-list__item-primary-content tags-checkbox" >
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox1'>
-                                <input type="checkbox" id="checkbox1" value="front-end" name="front-end" class="mdl-checkbox__input ev-front-end-filter" checked>
-                                <span class = "mdl-checkbox__label">front-end</span>                                
-                            </label>
-
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox2'>
-                                <input type="checkbox" id="checkbox2" value="back-end" name="back-end" class="mdl-checkbox__input ev-back-end-filter" checked>
-                                <span class = "mdl-checkbox__label">back-end</span>                                
-                            </label>
-
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox3'>
-                                <input type="checkbox" id="checkbox3" value="design" name="design" class="mdl-checkbox__input ev-design-filter" checked>
-                                <span class = "mdl-checkbox__label">design</span>                                
-                            </label>
-
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox4'>
-                                <input type="checkbox" id="checkbox4" value="devops" name="devops" class="mdl-checkbox__input ev-devops-filter" checked>
-                                <span class = "mdl-checkbox__label">devops</span>                                
-                            </label>
-
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox5'>
-                                <input type="checkbox" id="checkbox5" value="marketing" name="marketing" class="mdl-checkbox__input ev-marketing-filter" checked>
-                                <span class = "mdl-checkbox__label">marketing</span>                                
-                            </label>
-
-                            <label class="mdl-checkbox mdl-js-checkbox" for='checkbox6'>
-                                <input type="checkbox" id="checkbox6" value="administracao" name="administracao" class="mdl-checkbox__input ev-administracao-filter" checked>
-                                <span class = "mdl-checkbox__label">administração</span>                                
-                            </label>
-                        </div>
-                    </li>
+                    @include('tags-filters')
                     <li class="mdl-list__item self-end">
                         <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect ev-reset-filter">
                             Limpar

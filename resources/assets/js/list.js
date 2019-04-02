@@ -308,6 +308,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('front-end', false);
             }
+            break;
         case 'back-end':
             if ($('.ev-back-end-filter').prop('checked')){
                 updateTagFilter('back-end', true);
@@ -315,6 +316,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('back-end', false);
             }
+            break;
         case 'design':
             if ($('.ev-design-filter').prop('checked')){
                 updateTagFilter('design', true);
@@ -322,6 +324,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('design', false);
             }
+            break;
         case 'devops':
             if ($('.ev-devops-filter').prop('checked')){
                 updateTagFilter('devops', true);
@@ -329,6 +332,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('devops', false);
             }
+            break;
         case 'marketing':
             if ($('.ev-marketing-filter').prop('checked')){
                 updateTagFilter('marketing', true);
@@ -336,6 +340,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('marketing', false);
             }
+            break;
         case 'administracao':
             if ($('.ev-administracao-filter').prop('checked')){
                 updateTagFilter('administracao', true);
@@ -343,6 +348,7 @@ function verifyTagFilter (tagFilter) {
             else {
                 updateTagFilter('administracao', false);
             }
+            break;
     }
 }
 
@@ -446,6 +452,16 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
     });
 });
 
+
+tags = ['front-end', 'back-end', 'design', 'devops', 'marketing', 'administracao'];
+
+
+tags.map(function(tag){
+    $(document).on('click', '.ev-' + tag + '-filter', function(){
+        verifyTagFilter(tag);
+    });
+});
+
 $(document).on('click', '.ev-internship-filter', function () {
     verifyBondFilter('internship');
 });
@@ -454,39 +470,13 @@ $(document).on('click', '.ev-contract-filter', function () {
     verifyBondFilter('contract');
 });
 
-$(document).on('click', '.ev-front-end-filter', function() {
-    verifyTagFilter('front-end');
-});
-
-$(document).on('click', '.ev-back-end-filter', function() {
-    verifyTagFilter('back-end');
-});
-
-$(document).on('click', '.ev-design-filter', function() {
-    verifyTagFilter('design');
-});
-
-$(document).on('click', '.ev-devops-filter', function() {
-    verifyTagFilter('devops');
-});
-
-$(document).on('click', '.ev-marketing-filter', function() {
-    verifyTagFilter('marketing');
-});
-
-$(document).on('click', '.ev-administracao-filter', function() {
-    verifyTagFilter('administracao');
-});
-
 $('.ev-reset-filter').on('click', function () {
     $('.mdl-cell').show();
     $('select.ev-filter-rating').barrating('clear');
     $('.ev-contract-filter').parents('.mdl-switch').addClass('is-checked');
     $('.ev-internship-filter').parents('.mdl-switch').addClass('is-checked');
-    $('.ev-front-end-filter').parents('.mdl-checkbox').addClass('is-checked');
-    $('.ev-back-end-filter').parents('.mdl-checkbox').addClass('is-checked');
-    $('.ev-design-filter').parents('.mdl-checkbox').addClass('is-checked');
-    $('.ev-devops-filter').parents('.mdl-checkbox').addClass('is-checked');
-    $('.ev-marketing-filter').parents('.mdl-checkbox').addClass('is-checked');
-    $('.ev-administracao-filter').parents('.mdl-checkbox').addClass('is-checked');
+
+    tags.map(function(tag){
+        $('.ev-' + tag + '-filter').parents('.mdl-checkbox').addClass('is-checked');
+    });
 });
