@@ -83,6 +83,23 @@ function ratingFilter(value) {
 
 }
 
+var tags = [];
+
+function initializeTagsFilterEvents(){
+    $('.ev-filter-tags input')
+        .each(function() {
+            $(this).change(function() {
+                if($(this).is(':checked')) {
+                    var tag = $(this).attr('name');
+                    tags.push(tag);
+                    //atualizar a lista
+                } else {
+
+                }
+            });
+        });
+}
+
 function initializeRating() {
     //initialize rating selects
     $('.rating').each(function (index, el) {
@@ -178,21 +195,41 @@ function curriculumStateChanger(route, nextState, section) {
 }
 function selectBondElements(bondClass) {
     const currentRating = $('.ev-filter-rating').attr('data-current-rating');
-    console.log(currentRating);
     let elements = [];
 
     const el = $(bondClass);
 
     el.each(function () {
-
-        if ($(this).parent()
-            .siblings('div.rating-div').children('div.br-wrapper').children('select.rating').attr('data-current-rating') >= currentRating) {
-            elements.push($(this));
+        if (
+            $(this).parent()
+                .siblings('div.rating-div')
+                .children('div.br-wrapper')
+                .children('select.rating')
+                .attr('data-current-rating') >= currentRating
+            && checkAreas($(this).closest('.mdl-card').find('.ev-areas').data('areas'))
+        ) {
+                elements.push($(this));
         }
 
     });
 
     return elements;
+}
+
+function checkAreas(areas) {
+    let filters = $('.ev-filter-tags').find('input[type="checkbox"]').filter(':checked');
+    let checked = false;
+    if (filters.length === 0) {
+        return checked;
+    }
+    filters.each(function () {
+        console.log(areas.search($(this).val()))
+        if (areas.search($(this).val()) !== -1) {
+            checked = true;
+        }
+    })
+
+    return checked;
 }
 //bond filters 
 function updateBondFilter(type, state) {
@@ -245,7 +282,7 @@ function verifyBondFilter(bondFilter) {
             updateBondFilter('internship', false);
         }
     }
-    else {
+    else if (bondFilter === 'internship') {
         if ($('.ev-contract-filter').prop('checked')) {
             updateBondFilter('contract', true);
         }
@@ -259,8 +296,76 @@ function verifyBondFilter(bondFilter) {
         else {
             updateBondFilter('internship', false);
         }
+    } 
+}
+
+function verifyTagFilter (tagFilter) {
+    switch (tagFilter){
+        case 'front-end':
+            if ($('.ev-front-end-filter').prop('checked')){
+                updateTagFilter('front-end', true);
+            }
+            else {
+                updateTagFilter('front-end', false);
+            }
+        case 'back-end':
+            if ($('.ev-back-end-filter').prop('checked')){
+                updateTagFilter('back-end', true);
+            }
+            else {
+                updateTagFilter('back-end', false);
+            }
+        case 'design':
+            if ($('.ev-design-filter').prop('checked')){
+                updateTagFilter('design', true);
+            }
+            else {
+                updateTagFilter('design', false);
+            }
+        case 'devops':
+            if ($('.ev-devops-filter').prop('checked')){
+                updateTagFilter('devops', true);
+            }
+            else {
+                updateTagFilter('devops', false);
+            }
+        case 'marketing':
+            if ($('.ev-marketing-filter').prop('checked')){
+                updateTagFilter('marketing', true);
+            }
+            else {
+                updateTagFilter('marketing', false);
+            }
+        case 'administracao':
+            if ($('.ev-administracao-filter').prop('checked')){
+                updateTagFilter('administracao', true);
+            }
+            else {
+                updateTagFilter('administracao', false);
+            }
     }
 }
+
+function updateTagFilter (tagFilter, status) {
+    var elements = [];
+
+    $('.ev-filter-tags input').each(function (index, el) {
+        if (tagFilter === $(el).attr('name')) {
+            if (status) {
+                elements = $('.chip-' + tagFilter);
+                elements.each(function (_, element){
+                    $(element).parents('.mdl-cell').show();
+                });
+            } else {
+                elements = $('.chip-' + tagFilter);
+                elements.each(function (_, element){
+                    $(element).parents('.mdl-cell').hide();
+                });
+            }
+        }
+    })
+}
+
 //=====================================================
 // EVENTOS
 //=====================================================
@@ -349,9 +454,39 @@ $(document).on('click', '.ev-contract-filter', function () {
     verifyBondFilter('contract');
 });
 
+$(document).on('click', '.ev-front-end-filter', function() {
+    verifyTagFilter('front-end');
+});
+
+$(document).on('click', '.ev-back-end-filter', function() {
+    verifyTagFilter('back-end');
+});
+
+$(document).on('click', '.ev-design-filter', function() {
+    verifyTagFilter('design');
+});
+
+$(document).on('click', '.ev-devops-filter', function() {
+    verifyTagFilter('devops');
+});
+
+$(document).on('click', '.ev-marketing-filter', function() {
+    verifyTagFilter('marketing');
+});
+
+$(document).on('click', '.ev-administracao-filter', function() {
+    verifyTagFilter('administracao');
+});
+
 $('.ev-reset-filter').on('click', function () {
     $('.mdl-cell').show();
     $('select.ev-filter-rating').barrating('clear');
     $('.ev-contract-filter').parents('.mdl-switch').addClass('is-checked');
     $('.ev-internship-filter').parents('.mdl-switch').addClass('is-checked');
+    $('.ev-front-end-filter').parents('.mdl-checkbox').addClass('is-checked');
+    $('.ev-back-end-filter').parents('.mdl-checkbox').addClass('is-checked');
+    $('.ev-design-filter').parents('.mdl-checkbox').addClass('is-checked');
+    $('.ev-devops-filter').parents('.mdl-checkbox').addClass('is-checked');
+    $('.ev-marketing-filter').parents('.mdl-checkbox').addClass('is-checked');
+    $('.ev-administracao-filter').parents('.mdl-checkbox').addClass('is-checked');
 });

@@ -1,8 +1,10 @@
 @foreach($profiles as $profile)
 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone ev-search-card">
     <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
-        <div class="mdl-card__title column pb-5">
-            <h2 class="mdl-card__title-text self-center dont-break-out ev-search-text">{{ $profile->name }}</h2>
+        <div class="mdl-card__title mdl-card--border">
+            <small class="mdl-card__subtitle-text ">Recebido em: {{ $profile->created_at->format('d-m-Y') }}</small>
+        </div>
+            <div class="mdl-card__title column pb-5">
             <div class="mdl-card__subtitle-text">
                 @if($profile->internship)
                     <span class="mdl-chip chip-estagio">
@@ -15,6 +17,7 @@
                 @endif
             </div>
             <div class="mt-5 rating-div">
+            <h2 class="mdl-card__title-text self-center ev-search-text">{{ $profile->name }}</h2>
                 <select class="rating" data-current-rating="{{ $profile->star }}" data-profile-id="{{ $profile->_id }}">
                     {{-- <option value=""></option> --}}
                     <option value="1">1</option>
@@ -41,6 +44,19 @@
                         <i class="mdl-list__item-icon material-icons icon-responsive">email</i>
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                     </span>
+                </li>
+                <li class="mdl-list__item pd-tb-8">
+                    <div class='ev-areas'>
+                    <span class="mdl-list__item-primary-content">
+                        {{-- <i class="mdl-list__item-icon fa fa-tag icon-responsive" aria-hidden="true"></i> --}}
+                        <i class="mdl-list__item-icon material-icons icon-responsive">local_offer</i>
+                                @foreach($profile->tag as $tag)
+                                    <a class="chip-{{$tag}}" name="{{$tag}}">
+                                        {{$tag}}{{$loop->last ? '' : ','}}
+                                    </a>
+                                @endforeach
+                    </span>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -79,8 +95,8 @@
                 </button>
             @endif
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored ev-open-dialog" data-profile-id="{{ $profile->_id }}">
-                {{-- <i class="mdl-textfield__icon fa fa-tags icon-color icon-responsive" aria-hidden="true"></i> --}}
-                <i class="material-icons icon-color icon-responsive">local_offer</i>
+                {{-- <i class="mdl-textfield__icon fa fa-plus icon-color icon-responsive" aria-hidden="true"></i> --}}
+                <i class="material-icons icon-color icon-responsive">edit</i>
             </button>
         </div>
         <div class="none ev-search-text" data-profile-id="{{ $profile->_id }}">{{ collect($profile->tag)->implode(' ') }}</div>
