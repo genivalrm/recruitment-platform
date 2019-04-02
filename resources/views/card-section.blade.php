@@ -48,7 +48,6 @@
                 <li class="mdl-list__item pd-tb-8">
                     <div class='ev-areas'>
                     <span class="mdl-list__item-primary-content">
-                        {{-- <i class="mdl-list__item-icon fa fa-tag icon-responsive" aria-hidden="true"></i> --}}
                         <i class="mdl-list__item-icon material-icons icon-responsive">local_offer</i>
                                 @foreach($profile->tag as $tag)
                                     <a class="chip-{{$tag}}" name="{{$tag}}">

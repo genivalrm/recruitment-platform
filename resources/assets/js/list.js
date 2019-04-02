@@ -83,23 +83,6 @@ function ratingFilter(value) {
 
 }
 
-var tags = [];
-
-function initializeTagsFilterEvents(){
-    $('.ev-filter-tags input')
-        .each(function() {
-            $(this).change(function() {
-                if($(this).is(':checked')) {
-                    var tag = $(this).attr('name');
-                    tags.push(tag);
-                    //atualizar a lista
-                } else {
-
-                }
-            });
-        });
-}
-
 function initializeRating() {
     //initialize rating selects
     $('.rating').each(function (index, el) {
@@ -216,21 +199,6 @@ function selectBondElements(bondClass) {
     return elements;
 }
 
-function checkAreas(areas) {
-    let filters = $('.ev-filter-tags').find('input[type="checkbox"]').filter(':checked');
-    let checked = false;
-    if (filters.length === 0) {
-        return checked;
-    }
-    filters.each(function () {
-        console.log(areas.search($(this).val()))
-        if (areas.search($(this).val()) !== -1) {
-            checked = true;
-        }
-    })
-
-    return checked;
-}
 //bond filters 
 function updateBondFilter(type, state) {
     let elements = [];
@@ -452,9 +420,7 @@ $(document).on('submit', '.ev-submit-tag', function (event) {
     });
 });
 
-
 tags = ['front-end', 'back-end', 'design', 'devops', 'marketing', 'administracao'];
-
 
 tags.map(function(tag){
     $(document).on('click', '.ev-' + tag + '-filter', function(){
