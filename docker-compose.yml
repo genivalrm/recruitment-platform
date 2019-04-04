@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    web:
+        container_name: jobs-container
+        build: .
+        volumes:
+            - .:/home/project-folder
+        ports:
+            - '8000:80'
+   
