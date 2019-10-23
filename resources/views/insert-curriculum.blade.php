@@ -62,7 +62,7 @@
                             <img src="images/logo.png" class="shadow logo" alt="logo">
                         </div> --}}
                         <div class="mb-30 text-center">
-                            <h5 class="phrase">May your force be with us!</h5>
+                            <h5 class="phrase">Trabalhe conosco!</h5>
                         </div>
                         <div class="demo-card-wide mdl-card mdl-shadow--8dp">
                             <div class="mdl-card__supporting-text mdl-card__supporting-text--full">
@@ -140,7 +140,7 @@
             @if(Session('curriculumSended'))
                 <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-snackbar--active mdl-snackbar-success mdl-js-snackbar flex center">
                     <i class="material-icons color-dark-green pl-16">done</i>
-                    <div class="mdl-snackbar__text pd-16 self-center color-dark-green font-14 text-justify"></div>
+                    <div class="mdl-snackbar__text pd-16 self-center color-dark-green font-14"></div>
                     <button type="button" class="mdl-snackbar__action none"></button>
                 </div>
                 <script>
