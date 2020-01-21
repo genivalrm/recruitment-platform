@@ -54,6 +54,9 @@
 .text-center{
     text-align: center;
 }
+.text-right{
+    text-align: right;
+}
 .text-justify{
     text-align: justify;
 }
@@ -65,7 +68,7 @@
 }
 
 .w-file{
-    width: calc(100% - 48px); 
+    width: calc(100% - 48px);
 }
 
 /* paddings */
