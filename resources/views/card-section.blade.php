@@ -2,7 +2,9 @@
 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone ev-search-card">
     <div class="mdl-card mdl-shadow--4dp mdl-card-wide">
         <div class="mdl-card__title column pb-5">
-            <h2 class="mdl-card__title-text self-center dont-break-out ev-search-text">{{ $profile->name }}</h2>
+            <h2 class="mdl-card__title-text self-center dont-break-out ev-search-text">
+                {{ $profile->name }}
+            </h2>
             <div class="mdl-card__subtitle-text">
                 @if($profile->internship)
                     <span class="mdl-chip chip-estagio">
@@ -42,16 +44,27 @@
                         <a class="dont-break-out" href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
                     </span>
                 </li>
+                <li class="text-right">
+                    <span class="font-10">{{ $profile->updated_at->format('H:i d/m/Y') }}</span>
+                </li>
             </ul>
         </div>
         <div class="mdl-card__menu pos-t-33">
             @if($profile->archived)
             <!-- Colored mini FAB button -->
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color" data-profile-id="{{ $profile->_id }}">
-                    <i class="material-icons icon-responsive">unarchive</i>                   
+                <button
+                    title="Restaurar"
+                    class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-restore flex center bg-light-blue icon-color"
+                    data-profile-id="{{ $profile->_id }}"
+                >
+                    <i class="material-icons icon-responsive">unarchive</i>
             @else
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color" data-profile-id="{{ $profile->_id }}">
-                    <i class="material-icons icon-responsive">archive</i> 
+                <button
+                    title="Arquivar"
+                    class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ev-archive flex center bg-grey icon-color"
+                    data-profile-id="{{ $profile->_id }}"
+                >
+                    <i class="material-icons icon-responsive">archive</i>
             @endif
                 </button>
         </div>
